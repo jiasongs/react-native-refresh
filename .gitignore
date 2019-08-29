@@ -22,8 +22,6 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 Carthage/Build
-Pods/
-Podfile.lock
 
 # Android/IntelliJ
 #
