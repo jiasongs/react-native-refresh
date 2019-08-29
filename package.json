@@ -28,7 +28,7 @@
     "ios",
     "!ios/build",
     "src",
-    "RNFastImage.podspec"
+    "RCTRefreshHeader.podspec"
   ],
   "homepage": "https://github.com/jiasongs/react-native-refresh#readme"
 }
