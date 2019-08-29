@@ -94,7 +94,7 @@ function NormalRefreshHeader(props) {
                 ],
               },
             ]}
-            source={require('../../../assets/icon/icon_down_arrow.png')}
+            source={require('./assets/icon_down_arrow.png')}
           />
         )}
       </View>
