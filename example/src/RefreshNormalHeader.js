@@ -79,6 +79,7 @@ function NormalRefreshHeader(props) {
           style={[
             styles.image,
             {
+              opacity: refreshing ? 0 : 1,
               transform: [
                 {
                   rotate: rotateZRef.current.interpolate({
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
+    position: 'absolute',
     width: 30,
     height: 30,
     resizeMode: 'contain',
