@@ -44,7 +44,7 @@
 - (void)setRefreshing:(BOOL)refreshing {
   if (refreshing && self.state == MJRefreshStateIdle) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      [self beginRefreshing];
+//      [self beginRefreshing];
     });
   } else if (!refreshing && (self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh)) {
     dispatch_async(dispatch_get_main_queue(), ^{
