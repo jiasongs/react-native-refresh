@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+
+android {
+    //use legacy for android 6.0
+    useLibrary 'org.apache.http.legacy'
+
+    compileSdkVersion safeExtGet("compileSdkVersion", 25)
+    buildToolsVersion safeExtGet("buildToolsVersion", '25.0.2')
+
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 25)
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation "com.facebook.react:react-native:+"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
