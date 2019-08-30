@@ -1,7 +1,16 @@
 'use strict';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  RefreshControl,
+} from 'react-native';
 import { RefreshAnimateHeader, RefreshNormalHeader } from './src';
+import { RefreshHeader } from 'react-native-refresh';
+import Zz from './src/zz';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);
@@ -10,17 +19,17 @@ function App() {
     <FlatList
       style={styles.container}
       refreshControl={
-        <RefreshNormalHeader
+        <Zz
           refreshing={refreshing}
-          source={require('./src/assets/lectureLoading.json')}
+          // source={require('./src/assets/lectureLoading.json')}
           onRefresh={() => {
             setRefreshing(true);
-            setTimeout(() => {
-              setRefreshing(false);
-            }, 2000);
           }}
         />
       }
+      onScroll={() => {
+        console.log('111');
+      }}
       keyExtractor={(item, index) => index + ''}
       data={[1, 1, 1, 1, 1, 1, 1]}
       renderItem={() => {
@@ -38,6 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
+    backgroundColor: 'green',
   },
 });
 

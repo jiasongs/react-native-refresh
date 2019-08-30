@@ -1,6 +1,6 @@
 'use strict';
 import React, { useRef, useCallback, useMemo } from 'react';
-import { StyleSheet, Animated } from 'react-native';
+import { StyleSheet, Animated, Platform, RefreshControl } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { RefreshHeader, RefreshState } from 'react-native-refresh';
 
@@ -65,6 +65,18 @@ function RefreshAnimateHeader(props) {
       lotteryStyle: [styles.lottery, lotteryStyle],
     };
   }, [lotteryStyle, style]);
+
+  if (Platform.OS === 'android') {
+    return <RefreshControl
+      ref={forwardedRef}
+      style={buildStyles.style}
+      refreshing={refreshing}
+      onChangeOffset={onChangeOffsetCallBack}
+      onPullingRefresh={onPullingRefreshCallBack}
+      onRefresh={onRefreshCallBack}
+      onEndRefresh={onEndRefreshCallBack}
+    />
+  }
 
   return (
     <RefreshHeader

@@ -6,6 +6,8 @@ import {
   ActivityIndicator,
   Text,
   StyleSheet,
+  Platform,
+  RefreshControl
 } from 'react-native';
 import Dayjs from 'dayjs';
 import { RefreshHeader } from 'react-native-refresh';
@@ -32,7 +34,7 @@ function NormalRefreshHeader(props) {
         toValue: -180,
         duration: 200,
         useNativeDriver: true,
-      }).start(() => {});
+      }).start(() => { });
       setTitle('松开立即刷新');
     },
     [onPullingRefresh],
@@ -54,7 +56,7 @@ function NormalRefreshHeader(props) {
         toValue: 0,
         duration: 200,
         useNativeDriver: true,
-      }).start(() => {});
+      }).start(() => { });
       setTitle('下拉刷新');
     },
     [onEndRefresh],
@@ -144,4 +146,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(NormalRefreshHeader);
+
+
+const MemoNormalRefreshHeader = React.memo(NormalRefreshHeader);
+
+const ForwardNormalRefreshHeader = React.forwardRef((props, ref) => (
+  <MemoNormalRefreshHeader forwardedRef={ref} {...props} />
+));
+
+ForwardNormalRefreshHeader.displayName = 'RefreshHeader';
+
+export default React.memo(ForwardNormalRefreshHeader);

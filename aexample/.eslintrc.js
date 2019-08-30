@@ -13,7 +13,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'eslint-comments',
+    // 'eslint-comments',
     'prettier',
     'react',
     'react-hooks',
@@ -148,7 +148,7 @@ module.exports = {
     'no-undef-init': 1, // disallow use of undefined when initializing variables
     'no-unused-vars': [
       2,
-      {vars: 'all', args: 'after-used', ignoreRestSiblings: true},
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
     ], // disallow declaration of variables that are not used in the code
     'no-use-before-define': 0, // disallow use of variables before they are defined
     // Node.js
@@ -204,7 +204,7 @@ module.exports = {
     'space-in-brackets': 0, // require or disallow spaces inside brackets (off by default)
     'space-in-parens': 0, // require or disallow spaces inside parentheses (off by default)
     'space-infix-ops': 1, // require spaces around operators
-    'space-unary-ops': [1, {words: true, nonwords: false}], // require or disallow spaces before/after unary operators (words on by default, nonwords off by default)
+    'space-unary-ops': [1, { words: true, nonwords: false }], // require or disallow spaces before/after unary operators (words on by default, nonwords off by default)
     'max-nested-callbacks': 0, // specify the maximum depth callbacks can be nested (off by default)
     'one-var': 0, // allow just one var statement per function (off by default)
     'wrap-regex': 0, // require regex literals to be wrapped in parentheses (off by default)

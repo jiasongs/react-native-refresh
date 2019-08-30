@@ -14,16 +14,13 @@ public class RCTRefreshHeaderPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-
-        modules.add(new RCTRefreshHeaderModule(reactContext));
-
         return modules;
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Arrays.<ViewManager>asList(
-                new RCTHyphenateViewManager()
+                new RCTRefreshHeaderManager()
         );
     }
 }

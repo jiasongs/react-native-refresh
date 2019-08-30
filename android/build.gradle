@@ -30,5 +30,6 @@ android {
 
 dependencies {
     implementation "com.facebook.react:react-native:+"
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
