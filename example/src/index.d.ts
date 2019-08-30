@@ -1,24 +1,42 @@
 import * as React from 'react';
-import { StyleProp } from 'react-native';
+import { StyleProp, AccessibilityProps } from 'react-native';
 
-export type interface RefreshHeaderProperties {
-  style: StyleProp;
+type State = 'Idle' | 'Pulling' | 'Refreshing';
 
-  refreshing?: boolean;
+type Point = {
+  x: number;
+  y: number;
+};
 
-  onRefresh?(): void;
-
-  onPullingRefresh?(): void;
-
-  onEndRefresh?(): void;
-
-  onChangeOffset?(): void;
+interface Event {
+  nativeEvent: {
+    newOffset: Point;
+    oldOffset: Point;
+  };
 }
 
-export class RefreshBaseHeader extends React.ComponentClass<
-  RefreshHeaderProperties
-> {}
+interface RefreshState {
+  Idle: 'Idle';
+  Pulling: 'Pulling';
+  Refreshing: 'Refreshing';
+}
 
-export class RefreshNormalHeader extends React.ComponentClass<
-  RefreshHeaderProperties
-> {}
+export interface RefreshHeaderProperties {
+  style?: StyleProp;
+
+  refreshing: boolean;
+
+  onRefresh(state: State): void;
+
+  onPullingRefresh?(state: State): void;
+
+  onEndRefresh?(state: State): void;
+
+  onChangeOffset?(event: Event): void;
+}
+
+export const RefreshBaseHeader: React.ComponentClass<RefreshHeaderProperties>;
+
+export const RefreshNormalHeader: React.ComponentClass<RefreshHeaderProperties>;
+
+export const RefreshState: RefreshState;

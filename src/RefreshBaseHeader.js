@@ -11,8 +11,8 @@ const State = {
   Idle: 1 /** 普通闲置状态 */,
   Pulling: 2 /** 松开就可以进行刷新的状态 */,
   Refreshing: 3 /** 正在刷新中的状态 */,
-  WillRefresh: 4 /** 即将刷新的状态 */,
-  NoMoreData: 5 /** 所有数据加载完毕，没有更多的数据了 */,
+  // WillRefresh: 4 /** 即将刷新的状态 */,
+  // NoMoreData: 5 /** 所有数据加载完毕，没有更多的数据了 */,
 };
 
 function RefreshBaseHeader(props) {
@@ -21,10 +21,10 @@ function RefreshBaseHeader(props) {
     style,
     refreshing,
     onPullingRefresh,
-    // onWillRefresh,
     onRefresh,
     onEndRefresh,
     onChangeOffset,
+    forwardedRef,
   } = props;
 
   const currentState = useRef(State.Idle);
@@ -37,7 +37,6 @@ function RefreshBaseHeader(props) {
         onPullingRefresh && onPullingRefresh(state);
       } else if (state === State.WillRefresh) {
         console.log('onChangeState', state, '即将刷新的状态');
-        // onWillRefresh && onWillRefresh(state);
       } else if (state === State.Refreshing) {
         console.log('onChangeState', state, '正在刷新中的状态');
         onRefresh && onRefresh(state);
@@ -58,6 +57,7 @@ function RefreshBaseHeader(props) {
 
   return (
     <RCTRefreshHeader
+      ref={forwardedRef}
       style={buildStyles.style}
       refreshing={refreshing}
       onChangeOffset={onChangeOffset}
@@ -81,7 +81,6 @@ RefreshBaseHeader.propTypes = {
   refreshing: PropTypes.bool,
   onRefresh: PropTypes.func, // 刷新中
   onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
-  // onWillRefresh: PropTypes.func, // 即将刷新
   onEndRefresh: PropTypes.func, // 刷新结束
   onChangeOffset: PropTypes.func,
 };
@@ -92,4 +91,14 @@ RefreshBaseHeader.defaultProps = {
 
 const RCTRefreshHeader = requireNativeComponent('RCTRefreshHeader');
 
-export default React.memo(RefreshBaseHeader);
+const MemoRefreshBaseHeader = React.memo(RefreshBaseHeader);
+
+const ForwardRefreshBaseHeader = React.forwardRef((props, ref) => (
+  <MemoRefreshBaseHeader forwardedRef={ref} {...props} />
+));
+
+ForwardRefreshBaseHeader.displayName = 'RefreshBaseHeader';
+ForwardRefreshBaseHeader.propTypes = RefreshBaseHeader.propTypes;
+ForwardRefreshBaseHeader.defaultProps = RefreshBaseHeader.defaultProps;
+
+export default ForwardRefreshBaseHeader;

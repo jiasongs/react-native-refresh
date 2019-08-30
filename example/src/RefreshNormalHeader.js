@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Dayjs from 'dayjs';
+import { RefreshHeaderProperties } from '.';
 import RefreshBaseHeader from './RefreshBaseHeader';
 
 function NormalRefreshHeader(props) {
@@ -18,6 +19,7 @@ function NormalRefreshHeader(props) {
     onRefresh,
     onEndRefresh,
     onChangeOffset,
+    forwardedRef,
   } = props;
 
   const [title, setTitle] = useState('下拉刷新');
@@ -68,6 +70,7 @@ function NormalRefreshHeader(props) {
   return (
     <RefreshBaseHeader
       style={buildStyles.style}
+      ref={forwardedRef}
       refreshing={refreshing}
       onChangeOffset={onChangeOffset}
       onPullingRefresh={onPullingRefreshCallBack}
@@ -143,11 +146,19 @@ const styles = StyleSheet.create({
 });
 
 NormalRefreshHeader.propTypes = {
-  ...RefreshBaseHeader.type.propTypes,
+  ...RefreshBaseHeader.propTypes,
 };
 
 NormalRefreshHeader.defaultProps = {
-  ...RefreshBaseHeader.type.defaultProps,
+  ...RefreshBaseHeader.defaultProps,
 };
 
-export default React.memo(NormalRefreshHeader);
+const MemoNormalRefreshHeader = React.memo(NormalRefreshHeader);
+
+const ForwardNormalRefreshHeader = React.forwardRef((props, ref) => (
+  <MemoNormalRefreshHeader forwardedRef={ref} {...props} />
+));
+
+ForwardNormalRefreshHeader.displayName = 'NormalRefreshHeader';
+
+export default ForwardNormalRefreshHeader;

@@ -1,7 +1,7 @@
 'use strict';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { RefreshNormalHeader } from './src';
+import { RefreshNormalHeader, RefreshBaseHeader, RefreshState } from './src';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);

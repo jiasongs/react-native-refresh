@@ -7,6 +7,8 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import Dayjs from 'dayjs';
+import { RefreshHeaderProperties } from '.';
 import RefreshBaseHeader from './RefreshBaseHeader';
 
 function NormalRefreshHeader(props) {
@@ -17,9 +19,11 @@ function NormalRefreshHeader(props) {
     onRefresh,
     onEndRefresh,
     onChangeOffset,
+    forwardedRef,
   } = props;
 
   const [title, setTitle] = useState('下拉刷新');
+  const [lastTime, setLastTime] = useState(Dayjs().format('HH:mm'));
   const rotateZRef = useRef(new Animated.Value(0));
 
   const onPullingRefreshCallBack = useCallback(
@@ -30,7 +34,7 @@ function NormalRefreshHeader(props) {
         duration: 200,
         useNativeDriver: true,
       }).start(() => {});
-      setTitle('松开即可刷新');
+      setTitle('松开立即刷新');
     },
     [onPullingRefresh],
   );
@@ -38,7 +42,8 @@ function NormalRefreshHeader(props) {
   const onRefreshCallBack = useCallback(
     (state) => {
       onRefresh && onRefresh(state);
-      setTitle('正在刷新');
+      setLastTime(Dayjs().format('HH:mm'));
+      setTitle('正在刷新...');
     },
     [onRefresh],
   );
@@ -65,6 +70,7 @@ function NormalRefreshHeader(props) {
   return (
     <RefreshBaseHeader
       style={buildStyles.style}
+      ref={forwardedRef}
       refreshing={refreshing}
       onChangeOffset={onChangeOffset}
       onPullingRefresh={onPullingRefreshCallBack}
@@ -72,33 +78,34 @@ function NormalRefreshHeader(props) {
       onEndRefresh={onEndRefreshCallBack}
     >
       <View style={styles.leftContainer}>
-        {refreshing ? (
-          <ActivityIndicator
-            animating={refreshing}
-            size='small'
-            hidesWhenStopped={true}
-            color={'#666'}
-          />
-        ) : (
-          <Animated.Image
-            style={[
-              styles.image,
-              {
-                transform: [
-                  {
-                    rotate: rotateZRef.current.interpolate({
-                      inputRange: [0, 180],
-                      outputRange: ['0deg', '180deg'],
-                    }),
-                  },
-                ],
-              },
-            ]}
-            source={require('./assets/icon_down_arrow.png')}
-          />
-        )}
+        <Animated.Image
+          style={[
+            styles.image,
+            {
+              opacity: refreshing ? 0 : 1,
+              transform: [
+                {
+                  rotate: rotateZRef.current.interpolate({
+                    inputRange: [0, 180],
+                    outputRange: ['0deg', '180deg'],
+                  }),
+                },
+              ],
+            },
+          ]}
+          source={require('./assets/icon_down_arrow.png')}
+        />
+        <ActivityIndicator
+          animating={refreshing}
+          size="small"
+          hidesWhenStopped={true}
+          color={'#666'}
+        />
       </View>
-      <Text style={styles.titleStyle}>{title}</Text>
+      <View style={styles.rightContainer}>
+        <Text style={styles.titleStyle}>{title}</Text>
+        <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
+      </View>
     </RefreshBaseHeader>
   );
 }
@@ -108,13 +115,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 15,
+    height: 80,
   },
   titleStyle: {
     fontSize: 16,
-    textAlign: 'center',
     color: '#333',
-    marginLeft: 10,
+  },
+  timeStyle: {
+    fontSize: 16,
+    color: '#333',
+    marginTop: 10,
   },
   leftContainer: {
     width: 30,
@@ -122,7 +132,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  rightContainer: {
+    width: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   image: {
+    position: 'absolute',
     width: 30,
     height: 30,
     resizeMode: 'contain',
@@ -130,11 +146,19 @@ const styles = StyleSheet.create({
 });
 
 NormalRefreshHeader.propTypes = {
-  ...RefreshBaseHeader.type.propTypes,
+  ...RefreshBaseHeader.propTypes,
 };
 
 NormalRefreshHeader.defaultProps = {
-  ...RefreshBaseHeader.type.defaultProps,
+  ...RefreshBaseHeader.defaultProps,
 };
 
-export default React.memo(NormalRefreshHeader);
+const MemoNormalRefreshHeader = React.memo(NormalRefreshHeader);
+
+const ForwardNormalRefreshHeader = React.forwardRef((props, ref) => (
+  <MemoNormalRefreshHeader forwardedRef={ref} {...props} />
+));
+
+ForwardNormalRefreshHeader.displayName = 'NormalRefreshHeader';
+
+export default ForwardNormalRefreshHeader;
