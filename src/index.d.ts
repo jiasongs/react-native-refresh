@@ -35,6 +35,6 @@ export interface RefreshHeaderProps {
   onChangeOffset?(event: Event): void;
 }
 
-export const BaseRefreshHeader: React.ComponentClass<RefreshHeaderProps>;
+export const RefreshHeader: React.ComponentClass<RefreshHeaderProps>;
 
 export const RefreshState: Object<RefreshState>;

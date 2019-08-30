@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Dayjs from 'dayjs';
-import { BaseRefreshHeader } from 'react-native-refresh';
+import { RefreshHeader } from 'react-native-refresh';
 
 function NormalRefreshHeader(props) {
   const {
@@ -67,7 +67,7 @@ function NormalRefreshHeader(props) {
   }, [style]);
 
   return (
-    <BaseRefreshHeader
+    <RefreshHeader
       style={buildStyles.style}
       ref={forwardedRef}
       refreshing={refreshing}
@@ -105,7 +105,7 @@ function NormalRefreshHeader(props) {
         <Text style={styles.titleStyle}>{title}</Text>
         <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
       </View>
-    </BaseRefreshHeader>
+    </RefreshHeader>
   );
 }
 
