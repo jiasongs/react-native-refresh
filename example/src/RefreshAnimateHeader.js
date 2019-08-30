@@ -4,7 +4,6 @@ import { StyleSheet, Animated } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { RefreshHeader, RefreshState } from 'react-native-refresh';
 
-console.log('RefreshState', RefreshState);
 function RefreshAnimateHeader(props) {
   const {
     style,
