@@ -1,5 +1,11 @@
 'use strict';
-import React, { useRef, useState, useCallback, useMemo } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 import {
   View,
   Animated,
@@ -35,9 +41,21 @@ function Test(props) {
     return {};
   }, [style]);
 
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setState(true);
+    }, 3000);
+    return () => {};
+  }, []);
+
+  console.log('children', children);
   return (
-    <RCTRefreshHeader style={{ flex: 1, backgroundColor: 'transparent' }}>
-      <Text>134</Text>
+    <RCTRefreshHeader style={{ backgroundColor: 'transparent' }}>
+      {!state && <Text>222</Text>}
+      <Text>111</Text>
+      <Text>890</Text>
       {children}
     </RCTRefreshHeader>
   );

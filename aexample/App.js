@@ -25,7 +25,7 @@ function App() {
           onRefresh={() => {
             setRefreshing(true);
           }}
-        />
+        ></Zz>
       }
       onScroll={() => {
         console.log('111');
