@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
 
 RefreshHeader.propTypes = {
   style: ViewPropTypes.style,
-  refreshing: PropTypes.bool,
-  onRefresh: PropTypes.func, // 刷新中
+  refreshing: PropTypes.bool.isRequired,
+  onRefresh: PropTypes.func.isRequired, // 刷新中
   onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
   onEndRefresh: PropTypes.func, // 刷新结束
   onChangeOffset: PropTypes.func,

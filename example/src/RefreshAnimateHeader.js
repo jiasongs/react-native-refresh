@@ -2,7 +2,7 @@
 import React, { useRef, useCallback, useMemo } from 'react';
 import { StyleSheet, Animated } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { BaseRefreshHeader, RefreshState } from 'react-native-refresh';
+import { RefreshHeader, RefreshState } from 'react-native-refresh';
 
 console.log('RefreshState', RefreshState);
 function RefreshAnimateHeader(props) {
@@ -68,7 +68,7 @@ function RefreshAnimateHeader(props) {
   }, [lotteryStyle, style]);
 
   return (
-    <BaseRefreshHeader
+    <RefreshHeader
       ref={forwardedRef}
       style={buildStyles.style}
       refreshing={refreshing}
@@ -91,7 +91,7 @@ function RefreshAnimateHeader(props) {
           extrapolate: 'clamp',
         })}
       />
-    </BaseRefreshHeader>
+    </RefreshHeader>
   );
 }
 

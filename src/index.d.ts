@@ -15,7 +15,7 @@ interface Event {
   };
 }
 
-interface RefreshState {
+export interface RefreshState {
   Idle: 'Idle';
   Pulling: 'Pulling';
   Refreshing: 'Refreshing';
