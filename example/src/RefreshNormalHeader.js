@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Dayjs from 'dayjs';
-import RefreshBaseHeader from './src/RefreshBaseHeader';
+import { BaseRefreshHeader } from 'react-native-refresh';
 
 function NormalRefreshHeader(props) {
   const {
@@ -67,7 +67,7 @@ function NormalRefreshHeader(props) {
   }, [style]);
 
   return (
-    <RefreshBaseHeader
+    <BaseRefreshHeader
       style={buildStyles.style}
       ref={forwardedRef}
       refreshing={refreshing}
@@ -105,7 +105,7 @@ function NormalRefreshHeader(props) {
         <Text style={styles.titleStyle}>{title}</Text>
         <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
       </View>
-    </RefreshBaseHeader>
+    </BaseRefreshHeader>
   );
 }
 
@@ -144,20 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-NormalRefreshHeader.propTypes = {
-  ...RefreshBaseHeader.propTypes,
-};
-
-NormalRefreshHeader.defaultProps = {
-  ...RefreshBaseHeader.defaultProps,
-};
-
-const MemoNormalRefreshHeader = React.memo(NormalRefreshHeader);
-
-const ForwardNormalRefreshHeader = React.forwardRef((props, ref) => (
-  <MemoNormalRefreshHeader forwardedRef={ref} {...props} />
-));
-
-ForwardNormalRefreshHeader.displayName = 'NormalRefreshHeader';
-
-export default ForwardNormalRefreshHeader;
+export default React.memo(NormalRefreshHeader);

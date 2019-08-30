@@ -14,7 +14,7 @@
     "lottie-react-native": "^3.1.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-refresh": "file:.."
+    "react-native-refresh": "git+https://github.com/jiasongs/react-native-refresh.git"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

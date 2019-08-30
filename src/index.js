@@ -1,3 +1,4 @@
-import BaseRefreshHeader from './BaseRefreshHeader';
+import RefreshHeader from './RefreshHeader';
+import RefreshState from './RefreshState';
 
-export { BaseRefreshHeader };
+export { RefreshHeader, RefreshState };

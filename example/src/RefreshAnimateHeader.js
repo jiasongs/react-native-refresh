@@ -1,12 +1,10 @@
 'use strict';
 import React, { useRef, useCallback, useMemo } from 'react';
-import { Image, StyleSheet, Animated } from 'react-native';
-import PropTypes from 'prop-types';
+import { StyleSheet, Animated } from 'react-native';
 import LottieView from 'lottie-react-native';
-import RefreshBaseHeader from './src/BaseRefreshHeader';
+import { BaseRefreshHeader, RefreshState } from 'react-native-refresh';
 
-const State = RefreshBaseHeader.State;
-
+console.log('RefreshState', RefreshState);
 function RefreshAnimateHeader(props) {
   const {
     style,
@@ -22,7 +20,7 @@ function RefreshAnimateHeader(props) {
 
   const lottieRef = useRef(React.createRef());
   const progressRef = useRef(new Animated.Value(1));
-  const currentState = useRef(State.Idle);
+  const currentState = useRef(RefreshState.Idle);
 
   const onPullingRefreshCallBack = useCallback(
     (state) => {
@@ -54,7 +52,7 @@ function RefreshAnimateHeader(props) {
   const onChangeOffsetCallBack = useCallback(
     (event) => {
       const { newOffset } = event.nativeEvent;
-      if (currentState.current === State.Idle) {
+      if (currentState.current === RefreshState.Idle) {
         progressRef.current.setValue(Math.abs(newOffset.y));
       }
       onChangeOffset && onChangeOffset(event);
@@ -70,7 +68,7 @@ function RefreshAnimateHeader(props) {
   }, [lotteryStyle, style]);
 
   return (
-    <RefreshBaseHeader
+    <BaseRefreshHeader
       ref={forwardedRef}
       style={buildStyles.style}
       refreshing={refreshing}
@@ -93,7 +91,7 @@ function RefreshAnimateHeader(props) {
           extrapolate: 'clamp',
         })}
       />
-    </RefreshBaseHeader>
+    </BaseRefreshHeader>
   );
 }
 
@@ -109,26 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-RefreshAnimateHeader.propTypes = {
-  ...RefreshBaseHeader.propTypes,
-  lotteryStyle: Image.propTypes.style,
-  source: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
-};
-
-RefreshAnimateHeader.defaultProps = {
-  ...RefreshBaseHeader.defaultProps,
-};
-
-const MemoRefreshAnimateHeader = React.memo(RefreshAnimateHeader);
-
-const ForwardRefreshAnimateHeader = React.forwardRef((props, ref) => (
-  <MemoRefreshAnimateHeader forwardedRef={ref} {...props} />
-));
-
-ForwardRefreshAnimateHeader.displayName = 'RefreshAnimateHeader';
-
-export default ForwardRefreshAnimateHeader;
+export default React.memo(RefreshAnimateHeader);

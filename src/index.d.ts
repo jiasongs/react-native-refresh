@@ -37,4 +37,4 @@ export interface RefreshHeaderProps {
 
 export const BaseRefreshHeader: React.ComponentClass<RefreshHeaderProps>;
 
-export const RefreshState: RefreshState;
+export const RefreshState: Object<RefreshState>;

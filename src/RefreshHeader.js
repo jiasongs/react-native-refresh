@@ -17,7 +17,7 @@ const State = {
   // NoMoreData: 5 /** 所有数据加载完毕，没有更多的数据了 */,
 };
 
-function BaseRefreshHeader(props) {
+function RefreshHeader(props) {
   const {
     children,
     style,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
 });
 
-BaseRefreshHeader.propTypes = {
+RefreshHeader.propTypes = {
   style: ViewPropTypes.style,
   refreshing: PropTypes.bool,
   onRefresh: PropTypes.func, // 刷新中
@@ -86,21 +86,18 @@ BaseRefreshHeader.propTypes = {
   onChangeOffset: PropTypes.func,
 };
 
-BaseRefreshHeader.defaultProps = {
+RefreshHeader.defaultProps = {
   refreshing: false,
 };
 
 const RCTRefreshHeader = requireNativeComponent('RCTRefreshHeader');
 
-const MemoBaseRefreshHeader = React.memo(BaseRefreshHeader);
+const MemoRefreshHeader = React.memo(RefreshHeader);
 
-const ForwardBaseRefreshHeader = React.forwardRef((props, ref) => (
-  <MemoBaseRefreshHeader forwardedRef={ref} {...props} />
+const ForwardRefreshHeader = React.forwardRef((props, ref) => (
+  <MemoRefreshHeader forwardedRef={ref} {...props} />
 ));
 
-ForwardBaseRefreshHeader.displayName = 'BaseRefreshHeader';
-ForwardBaseRefreshHeader.propTypes = BaseRefreshHeader.propTypes;
-ForwardBaseRefreshHeader.defaultProps = BaseRefreshHeader.defaultProps;
-ForwardBaseRefreshHeader.State = State;
+ForwardRefreshHeader.displayName = 'RefreshHeader';
 
-export default ForwardBaseRefreshHeader;
+export default ForwardRefreshHeader;
