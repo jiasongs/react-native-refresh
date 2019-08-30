@@ -4,18 +4,20 @@ import {
   StyleSheet,
   ViewPropTypes,
   requireNativeComponent,
+  RefreshControl,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 const State = {
-  Idle: 1 /** 普通闲置状态 */,
-  Pulling: 2 /** 松开就可以进行刷新的状态 */,
-  Refreshing: 3 /** 正在刷新中的状态 */,
+  Idle: 'Idle' /** 普通闲置状态 */,
+  Pulling: 'Pulling' /** 松开就可以进行刷新的状态 */,
+  Refreshing: 'Refreshing' /** 正在刷新中的状态 */,
   // WillRefresh: 4 /** 即将刷新的状态 */,
   // NoMoreData: 5 /** 所有数据加载完毕，没有更多的数据了 */,
 };
 
-function RefreshBaseHeader(props) {
+function BaseRefreshHeader(props) {
   const {
     children,
     style,
@@ -32,17 +34,12 @@ function RefreshBaseHeader(props) {
   const onChangeState = useCallback(
     (event) => {
       const { state } = event.nativeEvent;
-      if (state === State.Pulling) {
-        console.log('onChangeState', state, '松开就可以进行刷新的状态');
-        onPullingRefresh && onPullingRefresh(state);
-      } else if (state === State.WillRefresh) {
-        console.log('onChangeState', state, '即将刷新的状态');
-      } else if (state === State.Refreshing) {
-        console.log('onChangeState', state, '正在刷新中的状态');
-        onRefresh && onRefresh(state);
-      } else if (state === State.Idle) {
-        console.log('onChangeState', state, '结束刷新');
-        onEndRefresh && onEndRefresh(state);
+      if (state === 2) {
+        onPullingRefresh && onPullingRefresh('Pulling');
+      } else if (state === 3) {
+        onRefresh && onRefresh('Refreshing');
+      } else if (state === 1) {
+        onEndRefresh && onEndRefresh('Idle');
       }
       currentState.current = state;
     },
@@ -54,6 +51,10 @@ function RefreshBaseHeader(props) {
       style: [style, styles.positionStyle],
     };
   }, [style]);
+
+  if (Platform.OS === 'android') {
+    return <RefreshControl {...props} />;
+  }
 
   return (
     <RCTRefreshHeader
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   },
 });
 
-RefreshBaseHeader.propTypes = {
+BaseRefreshHeader.propTypes = {
   style: ViewPropTypes.style,
   refreshing: PropTypes.bool,
   onRefresh: PropTypes.func, // 刷新中
@@ -85,20 +86,21 @@ RefreshBaseHeader.propTypes = {
   onChangeOffset: PropTypes.func,
 };
 
-RefreshBaseHeader.defaultProps = {
+BaseRefreshHeader.defaultProps = {
   refreshing: false,
 };
 
 const RCTRefreshHeader = requireNativeComponent('RCTRefreshHeader');
 
-const MemoRefreshBaseHeader = React.memo(RefreshBaseHeader);
+const MemoBaseRefreshHeader = React.memo(BaseRefreshHeader);
 
-const ForwardRefreshBaseHeader = React.forwardRef((props, ref) => (
-  <MemoRefreshBaseHeader forwardedRef={ref} {...props} />
+const ForwardBaseRefreshHeader = React.forwardRef((props, ref) => (
+  <MemoBaseRefreshHeader forwardedRef={ref} {...props} />
 ));
 
-ForwardRefreshBaseHeader.displayName = 'RefreshBaseHeader';
-ForwardRefreshBaseHeader.propTypes = RefreshBaseHeader.propTypes;
-ForwardRefreshBaseHeader.defaultProps = RefreshBaseHeader.defaultProps;
+ForwardBaseRefreshHeader.displayName = 'BaseRefreshHeader';
+ForwardBaseRefreshHeader.propTypes = BaseRefreshHeader.propTypes;
+ForwardBaseRefreshHeader.defaultProps = BaseRefreshHeader.defaultProps;
+ForwardBaseRefreshHeader.State = State;
 
-export default ForwardRefreshBaseHeader;
+export default ForwardBaseRefreshHeader;

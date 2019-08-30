@@ -9,16 +9,6 @@
     "react-native": "^0.57.0",
     "dayjs": "^1.8.16"
   },
-  "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.2.2",
-    "eslint-plugin-eslint-comments": "^3.1.2",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "eslint-plugin-react-native": "^3.7.0",
-    "prettier": "^1.18.2"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

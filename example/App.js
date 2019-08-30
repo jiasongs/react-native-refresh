@@ -1,7 +1,7 @@
 'use strict';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { RefreshNormalHeader, RefreshBaseHeader, RefreshState } from './src';
+import { BaseRefreshHeader } from './src';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);
@@ -10,8 +10,9 @@ function App() {
     <FlatList
       style={styles.container}
       refreshControl={
-        <RefreshNormalHeader
+        <BaseRefreshHeader
           refreshing={refreshing}
+          source={require('./src/assets/lectureLoading.json')}
           onRefresh={() => {
             setRefreshing(true);
             setTimeout(() => {
@@ -35,6 +36,7 @@ function App() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 20,
   },
 });

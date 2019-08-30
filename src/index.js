@@ -1,4 +1,3 @@
-import RefreshBaseHeader from './RefreshBaseHeader';
-import RefreshNormalHeader from './RefreshNormalHeader';
+import BaseRefreshHeader from './BaseRefreshHeader';
 
-export { RefreshBaseHeader, RefreshNormalHeader };
+export { BaseRefreshHeader };

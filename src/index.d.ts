@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleProp, AccessibilityProps } from 'react-native';
+import { StyleProp } from 'react-native';
 
 type State = 'Idle' | 'Pulling' | 'Refreshing';
 
@@ -21,7 +21,7 @@ interface RefreshState {
   Refreshing: 'Refreshing';
 }
 
-export interface RefreshHeaderProperties {
+export interface RefreshHeaderProps {
   style?: StyleProp;
 
   refreshing: boolean;
@@ -35,8 +35,6 @@ export interface RefreshHeaderProperties {
   onChangeOffset?(event: Event): void;
 }
 
-export const RefreshBaseHeader: React.ComponentClass<RefreshHeaderProperties>;
-
-export const RefreshNormalHeader: React.ComponentClass<RefreshHeaderProperties>;
+export const BaseRefreshHeader: React.ComponentClass<RefreshHeaderProps>;
 
 export const RefreshState: RefreshState;

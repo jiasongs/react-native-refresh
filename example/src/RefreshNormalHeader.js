@@ -8,8 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Dayjs from 'dayjs';
-import { RefreshHeaderProperties } from '.';
-import RefreshBaseHeader from './RefreshBaseHeader';
+import RefreshBaseHeader from './src/RefreshBaseHeader';
 
 function NormalRefreshHeader(props) {
   const {
