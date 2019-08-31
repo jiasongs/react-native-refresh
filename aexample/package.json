@@ -1,7 +1,7 @@
 {
   "name": "aexample",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "react-native start",
     "test": "jest",
@@ -13,7 +13,7 @@
     "lottie-react-native": "^3.1.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-refresh": "git+https://github.com/jiasongs/react-native-refresh.git"
+    "react-native-refresh": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

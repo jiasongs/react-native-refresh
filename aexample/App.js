@@ -43,7 +43,7 @@ function App() {
           setData((preData) => {
             return preData.concat([1, 1, 1, 1]);
           });
-          if (data.length > 30) {
+          if (data.length > 100) {
             stopEndReached({ allLoad: true });
           } else {
             stopEndReached({ allLoad: false });

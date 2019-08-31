@@ -34,7 +34,6 @@ function RefreshHeader(props) {
         onEndRefresh && onEndRefresh('Idle');
       } else if (state === 4) {
       }
-      console.log('onChangeState', state);
       currentState.current = state;
     },
     [onEndRefresh, onPullingRefresh, onRefresh],
@@ -43,7 +42,7 @@ function RefreshHeader(props) {
   const buildStyles = useMemo(() => {
     const flattenStyle = StyleSheet.flatten(style);
     if (!flattenStyle.height) {
-      console.error('style中必须设置固定高度');
+      console.warn('style中必须设置固定高度');
     }
     return {
       style: style,
@@ -66,7 +65,7 @@ function RefreshHeader(props) {
       [],
     );
     if (!scrollViewElement) {
-      console.error('children中必须包含scrollView');
+      console.warn('children中必须包含scrollView');
     }
     return (
       <React.Fragment>

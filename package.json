@@ -1,33 +1,10 @@
 {
-  "_from": "git+https://github.com/jiasongs/react-native-refresh.git",
-  "_id": "react-native-refresh@1.0.0",
-  "_inBundle": false,
-  "_integrity": "",
-  "_location": "/react-native-refresh",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "react-native-refresh@git+https://github.com/jiasongs/react-native-refresh.git",
-    "name": "react-native-refresh",
-    "escapedName": "react-native-refresh",
-    "rawSpec": "git+https://github.com/jiasongs/react-native-refresh.git",
-    "saveSpec": "git+https://github.com/jiasongs/react-native-refresh.git",
-    "fetchSpec": "https://github.com/jiasongs/react-native-refresh.git",
-    "gitCommittish": null
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "git+https://github.com/jiasongs/react-native-refresh.git#2e47395a8855b598b64e196e67777ba6dfa6ccba",
-  "_spec": "react-native-refresh@git+https://github.com/jiasongs/react-native-refresh.git",
-  "_where": "/Users/ruanmei/Desktop/Project/react-native-refresh/aexample",
   "author": {
     "name": "jiasong"
   },
   "bugs": {
     "url": "https://github.com/jiasongs/react-native-refresh/issues"
   },
-  "bundleDependencies": false,
   "deprecated": false,
   "description": "原生集成的下拉刷新。",
   "files": [
@@ -55,5 +32,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "src/index.d.ts",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
