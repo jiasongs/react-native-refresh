@@ -4,8 +4,6 @@ import {
   StyleSheet,
   ViewPropTypes,
   requireNativeComponent,
-  RefreshControl,
-  Platform,
   View,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -48,7 +46,7 @@ function RefreshHeader(props) {
       console.error('style中必须设置固定高度');
     }
     return {
-      style: [style, styles.headerStyle],
+      style: style,
       height: flattenStyle.height,
     };
   }, [style]);
