@@ -31,10 +31,10 @@ function App() {
       }}
       keyExtractor={(item, index) => index + ''}
       data={data}
-      renderItem={() => {
+      renderItem={({ item, index }) => {
         return (
           <View style={{ height: 100 }}>
-            <Text>Item</Text>
+            <Text>{'Item' + index}</Text>
           </View>
         );
       }}
