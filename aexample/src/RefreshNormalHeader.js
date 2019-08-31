@@ -36,6 +36,10 @@ function NormalRefreshHeader(props) {
   );
 
   const onEndRefreshCallBack = useCallback((state) => {
+    setTitle('下拉刷新');
+  }, []);
+
+  const onIdleRefreshCallBack = useCallback((state) => {
     Animated.timing(rotateZRef.current, {
       toValue: 0,
       duration: 200,
@@ -52,6 +56,7 @@ function NormalRefreshHeader(props) {
       onPullingRefresh={onPullingRefreshCallBack}
       onRefresh={onRefreshCallBack}
       onEndRefresh={onEndRefreshCallBack}
+      onIdleRefresh={onIdleRefreshCallBack}
     >
       <View style={styles.leftContainer}>
         <Animated.Image

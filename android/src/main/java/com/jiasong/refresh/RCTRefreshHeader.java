@@ -90,6 +90,9 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
 
     @Override
     public void setPrimaryColors(@ColorInt int ... colors){
+
     }
+
+
 
 }

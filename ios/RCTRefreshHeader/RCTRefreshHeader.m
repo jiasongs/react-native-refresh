@@ -10,38 +10,55 @@
 
 @interface RCTRefreshHeader ()
 
+@property (nonatomic, assign) MJRefreshState preState;
+
 @end
 
 @implementation RCTRefreshHeader
 
+-(void)dealloc {
+    NSLog(@"dealloc");
+}
+
 - (void)setState:(MJRefreshState)state {
-  [super setState:state];
-  if (self.onChangeState) {
-    self.onChangeState(@{@"state":@(state)});
-  }
+    [super setState:state];
+    if (self.onChangeState) {
+        if (state == MJRefreshStateIdle && _preState == MJRefreshStateRefreshing) {
+            self.onChangeState(@{@"state":@(4)});
+        } else {
+            self.onChangeState(@{@"state":@(state)});
+        }
+    }
+    _preState = state;
 }
 
 -(void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
-  [super scrollViewContentOffsetDidChange:change];
-  if (self.onChangeOffset) {
-    CGPoint newPoint = [change[@"new"] CGPointValue];
-    CGPoint oldPoint = [change[@"old"] CGPointValue];
-    if (!CGPointEqualToPoint(newPoint, oldPoint)) {
-        self.onChangeOffset(@{@"offset":@(fabs(newPoint.y))});
+    [super scrollViewContentOffsetDidChange:change];
+    if (self.onChangeOffset) {
+        CGPoint newPoint = [change[@"new"] CGPointValue];
+        CGPoint oldPoint = [change[@"old"] CGPointValue];
+        if (!CGPointEqualToPoint(newPoint, oldPoint)) {
+            self.onChangeOffset(@{@"offset":@(fabs(newPoint.y))});
+        }
     }
-  }
 }
 
 - (void)setRefreshing:(BOOL)refreshing {
-  if (refreshing && self.state == MJRefreshStateIdle) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [self beginRefreshing];
-    });
-  } else if (!refreshing && (self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh)) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [self endRefreshing];
-    });
-  }
+    if (refreshing && self.state == MJRefreshStateIdle) {
+        MJRefreshDispatchAsyncOnMainQueue({
+            [self beginRefreshing];
+        })
+    } else if (!refreshing && (self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh)) {
+        MJRefreshDispatchAsyncOnMainQueue({
+             __weak typeof(self) weakSelf = self;
+            [self endRefreshingWithCompletionBlock:^{
+                typeof(weakSelf) self = weakSelf;
+                if (self.onChangeState) {
+                    self.onChangeState(@{@"state":@(MJRefreshStateIdle)});
+                }
+            }];
+        })
+    }
 }
 
 @end

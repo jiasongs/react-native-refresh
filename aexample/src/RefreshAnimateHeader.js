@@ -17,25 +17,34 @@ function RefreshAnimateHeader(props) {
 
   const onRefreshCallBack = useCallback(
     (state) => {
-      currentState.current = state;
       setTimeout(() => {
         lottieRef.current.play();
       }, 0);
       onRefresh && onRefresh(state);
+      currentState.current = state;
     },
     [onRefresh],
   );
 
   const onEndRefreshCallBack = useCallback((state) => {
     currentState.current = state;
-    setTimeout(() => {
-      lottieRef.current.reset();
-    }, 70);
+  }, []);
+
+  const onIdleRefreshCallBack = useCallback((state) => {
+    if (currentState.current === RefreshState.End) {
+      setTimeout(() => {
+        lottieRef.current.reset();
+      }, 0);
+    }
+    currentState.current = state;
   }, []);
 
   const onChangeOffsetCallBack = useCallback((event) => {
     const { offset } = event.nativeEvent;
-    if (currentState.current === RefreshState.Idle) {
+    if (
+      currentState.current !== RefreshState.Refreshing &&
+      currentState.current !== RefreshState.End
+    ) {
       progressRef.current.setValue(offset);
     }
   }, []);
@@ -48,6 +57,7 @@ function RefreshAnimateHeader(props) {
       onPullingRefresh={onPullingRefreshCallBack}
       onRefresh={onRefreshCallBack}
       onEndRefresh={onEndRefreshCallBack}
+      onIdleRefresh={onIdleRefreshCallBack}
     >
       <LottieView
         ref={lottieRef}

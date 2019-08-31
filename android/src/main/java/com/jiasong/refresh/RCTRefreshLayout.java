@@ -4,6 +4,8 @@ import android.content.Context;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import android.view.MotionEvent;
 import com.facebook.react.uimanager.events.NativeGestureUtil;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 public class RCTRefreshLayout extends SmartRefreshLayout  {
 

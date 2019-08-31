@@ -106,9 +106,9 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
 
             @Override
             public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
-                RCTEventEmitter eventEmitter  = getEventEmitter();
+                RCTEventEmitter eventEmitter = getEventEmitter();
                 WritableMap map =  new WritableNativeMap();
-                map.putInt("offset",offset);
+                map.putInt("offset", offset);
                 eventEmitter.receiveEvent(getTargetId(), onChangeOffsetEvent, map);
             }
 
@@ -116,17 +116,20 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
             public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
                 RCTEventEmitter eventEmitter  = getEventEmitter();
                 WritableMap map =  new WritableNativeMap();
-                if (newState == RefreshState.ReleaseToRefresh) {
+                 if (newState == RefreshState.None) {
+                    map.putInt("state", 1);
+                    eventEmitter.receiveEvent(getTargetId(), onChangeStateEvent, map);
+                } else if (newState == RefreshState.PullDownToRefresh){
+                     map.putInt("state", 1);
+                     eventEmitter.receiveEvent(getTargetId(), onChangeStateEvent, map);
+                 } else if (newState == RefreshState.ReleaseToRefresh) {
                     map.putInt("state", 2);
                     eventEmitter.receiveEvent(getTargetId(), onChangeStateEvent, map);
-                } else if (newState == RefreshState.PullDownCanceled){
-                    map.putInt("state", 1);
-                    eventEmitter.receiveEvent(getTargetId(), onChangeStateEvent, map);
-                }  else if (newState == RefreshState.RefreshReleased){
+                } else if (newState == RefreshState.RefreshReleased){
                     map.putInt("state", 3);
                     eventEmitter.receiveEvent(getTargetId(), onChangeStateEvent, map);
-                } else if ( newState == RefreshState.RefreshFinish){
-                    map.putInt("state", 1);
+                } else if (newState == RefreshState.RefreshFinish){
+                    map.putInt("state", 4);
                     eventEmitter.receiveEvent(getTargetId(), onChangeStateEvent, map);
                 }
             }
