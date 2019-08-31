@@ -27,16 +27,7 @@
     CGPoint newPoint = [change[@"new"] CGPointValue];
     CGPoint oldPoint = [change[@"old"] CGPointValue];
     if (!CGPointEqualToPoint(newPoint, oldPoint)) {
-      self.onChangeOffset(@{
-                            @"newOffset":@{
-                                @"x":@(newPoint.x),
-                                @"y":@(newPoint.y),
-                                },
-                            @"oldOffset":@{
-                                @"x":@(oldPoint.x),
-                                @"y":@(oldPoint.y),
-                                },
-                            });
+        self.onChangeOffset(@{@"offset":@(fabs(newPoint.y))});
     }
   }
 }

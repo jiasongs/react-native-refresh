@@ -3,15 +3,9 @@ import { StyleProp } from 'react-native';
 
 type State = 'Idle' | 'Pulling' | 'Refreshing';
 
-type Point = {
-  x: number;
-  y: number;
-};
-
 interface Event {
   nativeEvent: {
-    newOffset: Point;
-    oldOffset: Point;
+    offset: number;
   };
 }
 
@@ -37,4 +31,4 @@ export interface RefreshHeaderProps {
 
 export const RefreshHeader: React.ComponentClass<RefreshHeaderProps>;
 
-export const RefreshState: Object<RefreshState>;
+export const RefreshState: RefreshState;

@@ -5,29 +5,15 @@ import LottieView from 'lottie-react-native';
 import { RefreshHeader, RefreshState } from 'react-native-refresh';
 
 function RefreshAnimateHeader(props) {
-  const {
-    style,
-    refreshing,
-    onPullingRefresh,
-    onRefresh,
-    onEndRefresh,
-    onChangeOffset,
-    forwardedRef,
-    source,
-    lotteryStyle,
-  } = props;
+  const { refreshing, onRefresh, source } = props;
 
   const lottieRef = useRef(React.createRef());
   const progressRef = useRef(new Animated.Value(1));
   const currentState = useRef(RefreshState.Idle);
 
-  const onPullingRefreshCallBack = useCallback(
-    (state) => {
-      currentState.current = state;
-      onPullingRefresh && onPullingRefresh(state);
-    },
-    [onPullingRefresh],
-  );
+  const onPullingRefreshCallBack = useCallback((state) => {
+    currentState.current = state;
+  }, []);
 
   const onRefreshCallBack = useCallback(
     (state) => {
@@ -40,48 +26,23 @@ function RefreshAnimateHeader(props) {
     [onRefresh],
   );
 
-  const onEndRefreshCallBack = useCallback(
-    (state) => {
-      currentState.current = state;
-      onEndRefresh && onEndRefresh(state);
-    },
-    [onEndRefresh],
-  );
+  const onEndRefreshCallBack = useCallback((state) => {
+    currentState.current = state;
+    setTimeout(() => {
+      lottieRef.current.reset();
+    }, 70);
+  }, []);
 
-  const onChangeOffsetCallBack = useCallback(
-    (event) => {
-      const { newOffset } = event.nativeEvent;
-      if (currentState.current === RefreshState.Idle) {
-        progressRef.current.setValue(Math.abs(newOffset.y));
-      }
-      onChangeOffset && onChangeOffset(event);
-    },
-    [onChangeOffset],
-  );
-
-  const buildStyles = useMemo(() => {
-    return {
-      style: [styles.container, style],
-      lotteryStyle: [styles.lottery, lotteryStyle],
-    };
-  }, [lotteryStyle, style]);
-
-  if (Platform.OS === 'android') {
-    return <RefreshControl
-      ref={forwardedRef}
-      style={buildStyles.style}
-      refreshing={refreshing}
-      onChangeOffset={onChangeOffsetCallBack}
-      onPullingRefresh={onPullingRefreshCallBack}
-      onRefresh={onRefreshCallBack}
-      onEndRefresh={onEndRefreshCallBack}
-    />
-  }
+  const onChangeOffsetCallBack = useCallback((event) => {
+    const { offset } = event.nativeEvent;
+    if (currentState.current === RefreshState.Idle) {
+      progressRef.current.setValue(offset);
+    }
+  }, []);
 
   return (
     <RefreshHeader
-      ref={forwardedRef}
-      style={buildStyles.style}
+      style={styles.container}
       refreshing={refreshing}
       onChangeOffset={onChangeOffsetCallBack}
       onPullingRefresh={onPullingRefreshCallBack}
@@ -90,31 +51,35 @@ function RefreshAnimateHeader(props) {
     >
       <LottieView
         ref={lottieRef}
-        style={buildStyles.lotteryStyle}
+        style={styles.lottery}
         resizeMode={'cover'}
         loop={true}
         autoSize={false}
         autoPlay={false}
+        speed={2}
         source={source}
+        hardwareAccelerationAndroid={true}
+        cacheStrategy={'strong'}
+        enableMergePathsAndroidForKitKatAndAbove={true}
         progress={progressRef.current.interpolate({
           inputRange: [0, 300],
           outputRange: [0, 1],
           extrapolate: 'clamp',
         })}
       />
+      {props.children}
     </RefreshHeader>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 60,
   },
   lottery: {
-    height: '100%',
+    height: 80,
   },
 });
 

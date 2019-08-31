@@ -1,27 +1,35 @@
 {
-  "name": "react-native-refresh",
-  "version": "1.0.0",
-  "description": "原生集成的下拉刷新。",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
-  "peerDependencies": {
-    "react": "^16.8.3",
-    "react-native": "^0.59.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
+  "_from": "git+https://github.com/jiasongs/react-native-refresh.git",
+  "_id": "react-native-refresh@1.0.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/react-native-refresh",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "git+https://github.com/jiasongs/react-native-refresh.git"
+    "raw": "react-native-refresh@git+https://github.com/jiasongs/react-native-refresh.git",
+    "name": "react-native-refresh",
+    "escapedName": "react-native-refresh",
+    "rawSpec": "git+https://github.com/jiasongs/react-native-refresh.git",
+    "saveSpec": "git+https://github.com/jiasongs/react-native-refresh.git",
+    "fetchSpec": "https://github.com/jiasongs/react-native-refresh.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/jiasongs/react-native-refresh.git#2e47395a8855b598b64e196e67777ba6dfa6ccba",
+  "_spec": "react-native-refresh@git+https://github.com/jiasongs/react-native-refresh.git",
+  "_where": "/Users/ruanmei/Desktop/Project/react-native-refresh/aexample",
   "author": {
     "name": "jiasong"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jiasongs/react-native-refresh/issues"
   },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "原生集成的下拉刷新。",
   "files": [
     "android",
     "!android/build",
@@ -30,5 +38,22 @@
     "src",
     "RCTRefreshHeader.podspec"
   ],
-  "homepage": "https://github.com/jiasongs/react-native-refresh#readme"
+  "homepage": "https://github.com/jiasongs/react-native-refresh#readme",
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "react-native-refresh",
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-native": "^0.57.0",
+    "dayjs": "^1.8.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiasongs/react-native-refresh.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "src/index.d.ts",
+  "version": "1.0.0"
 }

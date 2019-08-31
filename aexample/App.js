@@ -1,5 +1,5 @@
 'use strict';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,37 +7,48 @@ import {
   ScrollView,
   FlatList,
   RefreshControl,
+  ActivityIndicator,
 } from 'react-native';
-import { RefreshAnimateHeader, RefreshNormalHeader } from './src';
-import { RefreshHeader } from 'react-native-refresh';
-import Zz from './src/zz';
+import ListView from './src/List/ListView';
+import RefreshNormalHeader from './src/RefreshNormalHeader';
+import RefreshAnimateHeader from './src/RefreshAnimateHeader';
+
+const dataTemp = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);
+  const [data, setData] = useState(dataTemp);
+  const listRef = useRef(React.createRef());
 
   return (
-    <FlatList
+    <ListView
+      ref={listRef}
       style={styles.container}
-      refreshControl={
-        <Zz
-          refreshing={refreshing}
-          // source={require('./src/assets/lectureLoading.json')}
-          onRefresh={() => {
-            setRefreshing(true);
-          }}
-        ></Zz>
-      }
-      onScroll={() => {
-        console.log('111');
+      onRefresh={(stopRefresh) => {
+        setTimeout(() => {
+          stopRefresh();
+        }, 3000);
       }}
       keyExtractor={(item, index) => index + ''}
-      data={[1, 1, 1, 1, 1, 1, 1]}
+      data={data}
       renderItem={() => {
         return (
-          <View>
+          <View style={{ height: 100 }}>
             <Text>Item</Text>
           </View>
         );
+      }}
+      onEndReached={(stopEndReached) => {
+        setTimeout(() => {
+          setData((preData) => {
+            return preData.concat([1, 1, 1, 1]);
+          });
+          if (data.length > 30) {
+            stopEndReached({ allLoad: true });
+          } else {
+            stopEndReached({ allLoad: false });
+          }
+        }, 300);
       }}
     />
   );
@@ -47,7 +58,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
-    backgroundColor: 'green',
   },
 });
 

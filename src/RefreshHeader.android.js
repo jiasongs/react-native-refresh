@@ -6,16 +6,10 @@ import {
   requireNativeComponent,
   RefreshControl,
   Platform,
+  View,
 } from 'react-native';
 import PropTypes from 'prop-types';
-
-const State = {
-  Idle: 'Idle' /** 普通闲置状态 */,
-  Pulling: 'Pulling' /** 松开就可以进行刷新的状态 */,
-  Refreshing: 'Refreshing' /** 正在刷新中的状态 */,
-  // WillRefresh: 4 /** 即将刷新的状态 */,
-  // NoMoreData: 5 /** 所有数据加载完毕，没有更多的数据了 */,
-};
+import State from './RefreshState';
 
 function RefreshHeader(props) {
   const {
@@ -40,40 +34,69 @@ function RefreshHeader(props) {
         onRefresh && onRefresh('Refreshing');
       } else if (state === 1) {
         onEndRefresh && onEndRefresh('Idle');
+      } else if (state === 4) {
       }
+      console.log('onChangeState', state);
       currentState.current = state;
     },
     [onEndRefresh, onPullingRefresh, onRefresh],
   );
 
   const buildStyles = useMemo(() => {
+    const flattenStyle = StyleSheet.flatten(style);
+    if (!flattenStyle.height) {
+      console.error('style中必须设置固定高度');
+    }
     return {
-      style: [style, styles.positionStyle],
+      style: [style, styles.headerStyle],
+      height: flattenStyle.height,
     };
   }, [style]);
 
-  if (Platform.OS === 'android') {
-    return <RefreshControl {...props} />;
-  }
+  const buildChildren = useMemo(() => {
+    const headerElement = [];
+    let scrollViewElement = null;
+    React.Children.map(
+      children,
+      (item) => {
+        if (item.type !== 'RCTScrollView') {
+          headerElement.push(item);
+        } else {
+          scrollViewElement = item;
+        }
+      },
+      [],
+    );
+    if (!scrollViewElement) {
+      console.error('children中必须包含scrollView');
+    }
+    return (
+      <React.Fragment>
+        <RCTRefreshHeader>
+          <View style={buildStyles.style}>{headerElement}</View>
+        </RCTRefreshHeader>
+        {scrollViewElement}
+      </React.Fragment>
+    );
+  }, [children]);
 
   return (
-    <RCTRefreshHeader
+    <RCTRefreshLayout
       ref={forwardedRef}
-      style={buildStyles.style}
+      style={styles.positionStyle}
       refreshing={refreshing}
       onChangeOffset={onChangeOffset}
       onChangeState={onChangeState}
+      headerHeight={buildStyles.height}
     >
-      {children}
-    </RCTRefreshHeader>
+      {buildChildren}
+    </RCTRefreshLayout>
   );
 }
 
 const styles = StyleSheet.create({
   positionStyle: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
+    flex: 1,
   },
 });
 
@@ -90,6 +113,7 @@ RefreshHeader.defaultProps = {
   refreshing: false,
 };
 
+const RCTRefreshLayout = requireNativeComponent('RCTRefreshLayout');
 const RCTRefreshHeader = requireNativeComponent('RCTRefreshHeader');
 
 const MemoRefreshHeader = React.memo(RefreshHeader);

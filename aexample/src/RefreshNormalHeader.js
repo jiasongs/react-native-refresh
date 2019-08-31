@@ -1,44 +1,30 @@
 'use strict';
-import React, { useRef, useState, useCallback, useMemo } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import {
   View,
   Animated,
   ActivityIndicator,
   Text,
   StyleSheet,
-  Platform,
-  RefreshControl
 } from 'react-native';
 import Dayjs from 'dayjs';
 import { RefreshHeader } from 'react-native-refresh';
 
 function NormalRefreshHeader(props) {
-  const {
-    style,
-    refreshing,
-    onPullingRefresh,
-    onRefresh,
-    onEndRefresh,
-    onChangeOffset,
-    forwardedRef,
-  } = props;
+  const { refreshing, onRefresh } = props;
 
   const [title, setTitle] = useState('下拉刷新');
   const [lastTime, setLastTime] = useState(Dayjs().format('HH:mm'));
   const rotateZRef = useRef(new Animated.Value(0));
 
-  const onPullingRefreshCallBack = useCallback(
-    (state) => {
-      onPullingRefresh && onPullingRefresh(state);
-      Animated.timing(rotateZRef.current, {
-        toValue: -180,
-        duration: 200,
-        useNativeDriver: true,
-      }).start(() => { });
-      setTitle('松开立即刷新');
-    },
-    [onPullingRefresh],
-  );
+  const onPullingRefreshCallBack = useCallback((state) => {
+    Animated.timing(rotateZRef.current, {
+      toValue: -180,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => {});
+    setTitle('松开立即刷新');
+  }, []);
 
   const onRefreshCallBack = useCallback(
     (state) => {
@@ -49,31 +35,20 @@ function NormalRefreshHeader(props) {
     [onRefresh],
   );
 
-  const onEndRefreshCallBack = useCallback(
-    (state) => {
-      onEndRefresh && onEndRefresh(state);
-      Animated.timing(rotateZRef.current, {
-        toValue: 0,
-        duration: 200,
-        useNativeDriver: true,
-      }).start(() => { });
-      setTitle('下拉刷新');
-    },
-    [onEndRefresh],
-  );
+  const onEndRefreshCallBack = useCallback((state) => {
+    Animated.timing(rotateZRef.current, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => {});
+    setTitle('下拉刷新');
+  }, []);
 
-  const buildStyles = useMemo(() => {
-    return {
-      style: [styles.container, style],
-    };
-  }, [style]);
-
+  console.log('refreshing', refreshing);
   return (
     <RefreshHeader
-      style={buildStyles.style}
-      ref={forwardedRef}
+      style={styles.container}
       refreshing={refreshing}
-      onChangeOffset={onChangeOffset}
       onPullingRefresh={onPullingRefreshCallBack}
       onRefresh={onRefreshCallBack}
       onEndRefresh={onEndRefreshCallBack}
@@ -97,26 +72,27 @@ function NormalRefreshHeader(props) {
           source={require('./assets/icon_down_arrow.png')}
         />
         <ActivityIndicator
-          animating={refreshing}
+          style={{ opacity: refreshing ? 1 : 0 }}
+          animating={true}
           size="small"
           hidesWhenStopped={true}
-          color={'#666'}
         />
       </View>
       <View style={styles.rightContainer}>
         <Text style={styles.titleStyle}>{title}</Text>
         <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
       </View>
+      {props.children}
     </RefreshHeader>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    height: 80,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 80,
   },
   titleStyle: {
     fontSize: 16,
@@ -146,14 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-const MemoNormalRefreshHeader = React.memo(NormalRefreshHeader);
-
-const ForwardNormalRefreshHeader = React.forwardRef((props, ref) => (
-  <MemoNormalRefreshHeader forwardedRef={ref} {...props} />
-));
-
-ForwardNormalRefreshHeader.displayName = 'RefreshHeader';
-
-export default React.memo(ForwardNormalRefreshHeader);
+export default React.memo(NormalRefreshHeader);

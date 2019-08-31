@@ -13,12 +13,7 @@ import com.scwang.smartrefresh.layout.api.RefreshKernel;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.util.SmartUtil;
 
-/**
- * anyview
- * Created by painter.g on 2018/3/9.
- */
 
 public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
 
@@ -46,21 +41,17 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
     }
 
     private void initView(Context context) {
-        setMinimumHeight(SmartUtil.dp2px(60));
-    }
 
-//    public void setView(View v) {
-//        addView(v);
-//    }
+    }
 
     @NonNull
     public View getView() {
-        return this;//真实的视图就是自己，不能返回null
+        return this;  //真实的视图就是自己，不能返回null
     }
 
     @Override
     public SpinnerStyle getSpinnerStyle() {
-        return SpinnerStyle.Translate;//指定为平移，不能null
+        return SpinnerStyle.Translate; //指定为平移，不能null
     }
 
     @Override
