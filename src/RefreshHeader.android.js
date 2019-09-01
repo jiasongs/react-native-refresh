@@ -50,7 +50,6 @@ function RefreshHeader(props) {
         } else if (state === 4) {
           onEndRefresh && onEndRefresh(State.End);
         }
-        console.log('state', state);
         currentState.current = state;
       }
     },

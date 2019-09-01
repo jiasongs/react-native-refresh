@@ -1,11 +1,10 @@
 package com.jiasong.refresh;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.View;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+
+import android.content.Context;
+import android.view.View;
 
 import com.facebook.react.views.view.ReactViewGroup;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -17,30 +16,14 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 
 public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
 
-    private RefreshKernel mRefreshKernel;
-
 
     public RCTRefreshHeader(Context context) {
         super(context);
-        this.initView(context);
-    }
-
-    public RCTRefreshHeader(Context context, AttributeSet attrs) {
-        super(context);
-        this.initView(context);
-    }
-    public RCTRefreshHeader(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context);
-        this.initView(context);
     }
 
 
     @Override
     public void onInitialized(@NonNull RefreshKernel kernel, int height, int extendHeight) {
-        mRefreshKernel = kernel;
-    }
-
-    private void initView(Context context) {
 
     }
 
@@ -89,10 +72,9 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
     }
 
     @Override
-    public void setPrimaryColors(@ColorInt int ... colors){
+    public void setPrimaryColors(@ColorInt int... colors) {
 
     }
-
 
 
 }

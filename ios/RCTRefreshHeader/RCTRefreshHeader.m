@@ -20,6 +20,14 @@
     NSLog(@"dealloc");
 }
 
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        _preState = MJRefreshStateIdle;
+    }
+    return self;
+}
+
 - (void)setState:(MJRefreshState)state {
     [super setState:state];
     if (self.onChangeState) {

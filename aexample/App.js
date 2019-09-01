@@ -22,41 +22,78 @@ function App() {
   const listRef = useRef(React.createRef());
 
   return (
-    <ListView
-      ref={listRef}
-      style={styles.container}
-      onRefresh={(stopRefresh) => {
-        setTimeout(() => {
-          stopRefresh();
-        }, 3000);
-      }}
-      keyExtractor={(item, index) => index + ''}
-      data={data}
-      renderItem={({ item, index }) => {
-        return (
-          <TouchableOpacity
-            style={{ height: 100 }}
-            onPress={() => {
-              alert('Z');
-            }}
-          >
-            <Text>{'Item' + index}</Text>
-          </TouchableOpacity>
-        );
-      }}
-      onEndReached={(stopEndReached) => {
-        setTimeout(() => {
-          setData((preData) => {
-            return preData.concat([1, 1, 1, 1]);
-          });
-          if (data.length > 100) {
-            stopEndReached({ allLoad: true });
-          } else {
-            stopEndReached({ allLoad: false });
-          }
-        }, 5000);
-      }}
-    />
+    <View style={{ flex: 1, flexDirection: 'row' }}>
+      <ListView
+        ref={listRef}
+        style={styles.container}
+        onRefresh={(stopRefresh) => {
+          setTimeout(() => {
+            stopRefresh();
+          }, 3000);
+        }}
+        keyExtractor={(item, index) => index + ''}
+        data={data}
+        renderItem={({ item, index }) => {
+          return (
+            <TouchableOpacity
+              style={{ height: 100 }}
+              onPress={() => {
+                alert('Z');
+              }}
+            >
+              <Text>{'Item' + index}</Text>
+            </TouchableOpacity>
+          );
+        }}
+        onEndReached={(stopEndReached) => {
+          setTimeout(() => {
+            setData((preData) => {
+              return preData.concat([1, 1, 1, 1]);
+            });
+            if (data.length > 100) {
+              stopEndReached({ allLoad: true });
+            } else {
+              stopEndReached({ allLoad: false });
+            }
+          }, 5000);
+        }}
+      />
+      <ListView
+        ref={listRef}
+        style={styles.container}
+        onRefresh={(stopRefresh) => {
+          setTimeout(() => {
+            stopRefresh();
+          }, 3000);
+        }}
+        keyExtractor={(item, index) => index + ''}
+        data={data}
+        renderItem={({ item, index }) => {
+          return (
+            <TouchableOpacity
+              style={{ height: 100 }}
+              onPress={() => {
+                alert('Z');
+              }}
+            >
+              <Text>{'Item' + index}</Text>
+            </TouchableOpacity>
+          );
+        }}
+        onEndReached={(stopEndReached) => {
+          setTimeout(() => {
+            setData((preData) => {
+              return preData.concat([1, 1, 1, 1]);
+            });
+            if (data.length > 100) {
+              stopEndReached({ allLoad: true });
+            } else {
+              stopEndReached({ allLoad: false });
+            }
+          }, 5000);
+        }}
+      />
+    </View>
   );
 }
 
