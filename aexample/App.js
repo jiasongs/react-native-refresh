@@ -54,7 +54,7 @@ function App() {
           } else {
             stopEndReached({ allLoad: false });
           }
-        }, 3000);
+        }, 5000);
       }}
     />
   );

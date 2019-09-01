@@ -4,6 +4,8 @@ import { StyleSheet, Animated, Platform, RefreshControl } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { RefreshHeader, RefreshState } from 'react-native-refresh';
 
+const AnimateTime = 286;
+
 function RefreshAnimateHeader(props) {
   const { refreshing, onRefresh, source } = props;
 
@@ -18,7 +20,8 @@ function RefreshAnimateHeader(props) {
   const onRefreshCallBack = useCallback(
     (state) => {
       setTimeout(() => {
-        lottieRef.current.play();
+        lottieRef.current.play(0, AnimateTime);
+        progressRef.current.setValue(progressRef.current._value);
       }, 0);
       onRefresh && onRefresh(state);
       currentState.current = state;
@@ -70,9 +73,8 @@ function RefreshAnimateHeader(props) {
         source={source}
         hardwareAccelerationAndroid={true}
         cacheStrategy={'strong'}
-        enableMergePathsAndroidForKitKatAndAbove={true}
         progress={progressRef.current.interpolate({
-          inputRange: [0, 300],
+          inputRange: [0, 200],
           outputRange: [0, 1],
           extrapolate: 'clamp',
         })}

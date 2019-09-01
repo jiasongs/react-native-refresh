@@ -53,9 +53,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     marginLeft: 10,
-
-    lineHeight: 30,
-    fontSize: 13,
+    fontSize: 14,
     color: '#999999',
   },
 });

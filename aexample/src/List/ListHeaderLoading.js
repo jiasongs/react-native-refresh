@@ -11,7 +11,7 @@ function ListHeaderLoading(props) {
   return (
     <RefreshAnimateHeader
       refreshing={isRefreshing}
-      source={require('../assets/cycle_animation.json')}
+      source={require('../assets/8572-liquid-blobby-loader.json')}
       onRefresh={onRefresh}
       {...others}
     />
