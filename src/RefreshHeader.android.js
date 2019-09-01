@@ -15,6 +15,7 @@ function RefreshHeader(props) {
     children,
     style,
     refreshing,
+    enableRefresh,
     onPullingRefresh,
     onRefresh,
     onEndRefresh,
@@ -64,7 +65,7 @@ function RefreshHeader(props) {
 
   const buildStyles = useMemo(() => {
     const flattenStyle = StyleSheet.flatten(style);
-    if (!flattenStyle.height) {
+    if (!flattenStyle.height && enableRefresh) {
       console.warn('style中必须设置固定高度');
     }
     return {
@@ -92,13 +93,15 @@ function RefreshHeader(props) {
     }
     return (
       <React.Fragment>
-        <RCTRefreshHeader>
-          <View style={buildStyles.style}>{headerElement}</View>
-        </RCTRefreshHeader>
+        {enableRefresh && (
+          <RCTRefreshHeader>
+            <View style={buildStyles.style}>{headerElement}</View>
+          </RCTRefreshHeader>
+        )}
         {scrollViewElement}
       </React.Fragment>
     );
-  }, [children]);
+  }, [children, enableRefresh]);
 
   return (
     <View style={styles.positionStyle}>
@@ -106,6 +109,7 @@ function RefreshHeader(props) {
         {...panResponderRef.current.panHandlers}
         ref={forwardedRef}
         style={styles.positionStyle}
+        enableRefresh={enableRefresh}
         refreshing={refreshing}
         onChangeOffset={offsetCallback}
         onChangeState={onChangeState}
@@ -126,8 +130,9 @@ const styles = StyleSheet.create({
 
 RefreshHeader.propTypes = {
   style: ViewPropTypes.style,
-  refreshing: PropTypes.bool.isRequired,
-  onRefresh: PropTypes.func.isRequired, // 刷新中
+  refreshing: PropTypes.bool,
+  enableRefresh: PropTypes.bool,
+  onRefresh: PropTypes.func, // 刷新中
   onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
   onEndRefresh: PropTypes.func, // 刷新结束, 但是动画还未结束
   onIdleRefresh: PropTypes.func, // 闲置状态或者刷新完全结束
@@ -136,6 +141,7 @@ RefreshHeader.propTypes = {
 
 RefreshHeader.defaultProps = {
   refreshing: false,
+  enableRefresh: true,
 };
 
 const RCTRefreshLayout = requireNativeComponent('RCTRefreshLayout');

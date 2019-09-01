@@ -1,20 +1,10 @@
 package com.jiasong.refresh;
 
-import android.view.View;
-import android.support.annotation.NonNull;
-import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.uimanager.events.RCTEventEmitter;
-import com.facebook.react.views.scroll.ReactScrollView;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
+
 import java.util.Map;
 
 public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> {
@@ -31,12 +21,18 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
 
     @ReactProp(name = "headerHeight")
     public void setHeaderHeight(RCTRefreshLayout view, float headerHeight) {
-        view.setHeight(headerHeight);
+        view.setHeaderHeight(headerHeight);
     }
 
     @ReactProp(name = "refreshing")
     public void setRefreshing(RCTRefreshLayout view, Boolean refreshing) {
         view.setRefreshing(refreshing);
+    }
+
+    @ReactProp(name = "enableRefresh")
+    public void setEnableRefresh(RCTRefreshLayout view, Boolean enableRefresh) {
+        view.setEnableRefresh(enableRefresh);
+
     }
 
     @Override

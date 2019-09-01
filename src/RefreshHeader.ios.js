@@ -13,6 +13,7 @@ function RefreshHeader(props) {
     children,
     style,
     refreshing,
+    enableRefresh,
     onPullingRefresh,
     onRefresh,
     onEndRefresh,
@@ -43,14 +44,18 @@ function RefreshHeader(props) {
   );
 
   const buildStyles = useMemo(() => {
-    const flattenStyle = StyleSheet.flatten(style);
-    if (!flattenStyle.height) {
+    const flattenStyle = StyleSheet.flatten([style, styles.positionStyle]);
+    if (!flattenStyle.height && enableRefresh) {
       console.warn('style中必须设置固定高度');
     }
     return {
-      style: [style, styles.positionStyle],
+      style: flattenStyle,
     };
   }, [style]);
+
+  if (!enableRefresh) {
+    return null;
+  }
 
   return (
     <RCTRefreshHeader
@@ -75,8 +80,9 @@ const styles = StyleSheet.create({
 
 RefreshHeader.propTypes = {
   style: ViewPropTypes.style,
-  refreshing: PropTypes.bool.isRequired,
-  onRefresh: PropTypes.func.isRequired, // 刷新中
+  refreshing: PropTypes.bool,
+  enableRefresh: PropTypes.bool,
+  onRefresh: PropTypes.func, // 刷新中
   onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
   onEndRefresh: PropTypes.func, // 刷新结束, 但是动画还未结束
   onIdleRefresh: PropTypes.func, // 闲置状态或者刷新完全结束
@@ -85,6 +91,7 @@ RefreshHeader.propTypes = {
 
 RefreshHeader.defaultProps = {
   refreshing: false,
+  enableRefresh: true,
 };
 
 const RCTRefreshHeader = requireNativeComponent('RCTRefreshHeader');

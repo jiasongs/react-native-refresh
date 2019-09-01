@@ -3,6 +3,7 @@ package com.jiasong.refresh;
 import android.support.annotation.NonNull;
 
 import android.view.View;
+
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -28,7 +29,6 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
         mReactContext = context;
         eventEmitter = context.getJSModule(RCTEventEmitter.class);
         this.setEnableLoadMore(false);
-        this.setEnableRefresh(true);
         this.setHeaderMaxDragRate(2);
         this.setHeaderTriggerRate(1);
         this.setDragRate((float) 0.5);
@@ -48,11 +48,6 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
         }
     }
 
-    public void setHeight(float headerHeight) {
-        if (headerHeight != 0.0f) {
-            this.setHeaderHeight(headerHeight);
-        }
-    }
 
     public void setRefreshing(Boolean refreshing) {
         RefreshState newState = this.getState();
@@ -78,7 +73,7 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
 
         @Override
         public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset,
-                int headerHeight, int maxDragHeight) {
+                                   int headerHeight, int maxDragHeight) {
             WritableMap map = new WritableNativeMap();
             map.putDouble("offset", SmartUtil.px2dp(offset));
             eventEmitter.receiveEvent(getTargetId(), onChangeOffsetEvent, map);
@@ -86,7 +81,7 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
 
         @Override
         public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState,
-                @NonNull RefreshState newState) {
+                                   @NonNull RefreshState newState) {
             WritableMap map = new WritableNativeMap();
             if (newState == RefreshState.None) {
                 map.putInt("state", 1);

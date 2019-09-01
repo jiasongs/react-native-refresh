@@ -19,11 +19,13 @@ export interface RefreshState {
 export interface RefreshHeaderProps {
   style?: StyleProp;
 
-  refreshing: boolean;
+  refreshing?: boolean;
 
-  onIdleRefresh(state: State): void;
+  enableRefresh?: boolean;
 
-  onRefresh(state: State): void;
+  onIdleRefresh?(state: State): void;
+
+  onRefresh?(state: State): void;
 
   onPullingRefresh?(state: State): void;
 
