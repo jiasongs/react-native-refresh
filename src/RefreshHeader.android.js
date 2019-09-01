@@ -5,6 +5,7 @@ import {
   ViewPropTypes,
   requireNativeComponent,
   View,
+  PanResponder,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import State from './RefreshState';
@@ -23,6 +24,18 @@ function RefreshHeader(props) {
   } = props;
 
   const currentState = useRef(1);
+  const offsetRef = useRef(0);
+  const panResponderRef = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponderCapture: () => {
+        if (offsetRef.current >= 2) {
+          //满足条件捕获事件
+          return true;
+        }
+        return false;
+      },
+    }),
+  );
 
   const onChangeState = useCallback(
     (event) => {
@@ -43,6 +56,14 @@ function RefreshHeader(props) {
     },
     [onEndRefresh, onPullingRefresh, onRefresh],
   );
+
+  const offsetCallback = useCallback((event) => {
+    const { offset } = event.nativeEvent;
+    if (offsetRef.current != offset) {
+      offsetRef.current = offset;
+      onChangeOffset && onChangeOffset(event);
+    }
+  }, []);
 
   const buildStyles = useMemo(() => {
     const flattenStyle = StyleSheet.flatten(style);
@@ -84,10 +105,11 @@ function RefreshHeader(props) {
 
   return (
     <RCTRefreshLayout
+      {...panResponderRef.current.panHandlers}
       ref={forwardedRef}
       style={styles.positionStyle}
       refreshing={refreshing}
-      onChangeOffset={onChangeOffset}
+      onChangeOffset={offsetCallback}
       onChangeState={onChangeState}
       headerHeight={buildStyles.height}
     >

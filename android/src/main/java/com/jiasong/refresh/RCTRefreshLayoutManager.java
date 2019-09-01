@@ -37,8 +37,8 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
         refreshLayout.setHeaderTriggerRate(1);
         refreshLayout.setDragRate((float) 0.5);
         refreshLayout.setEnableOverScrollDrag(true);
-        refreshLayout.setEnableOverScrollBounce(true);
         refreshLayout.setEnablePureScrollMode(false);
+        refreshLayout.setEnableOverScrollBounce(false);
         return refreshLayout;
     }
 

@@ -8,6 +8,7 @@ import {
   FlatList,
   RefreshControl,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import ListView from './src/List/ListView';
 import RefreshNormalHeader from './src/RefreshNormalHeader';
@@ -33,9 +34,14 @@ function App() {
       data={data}
       renderItem={({ item, index }) => {
         return (
-          <View style={{ height: 100 }}>
+          <TouchableOpacity
+            style={{ height: 100 }}
+            onPress={() => {
+              alert('Z');
+            }}
+          >
             <Text>{'Item' + index}</Text>
-          </View>
+          </TouchableOpacity>
         );
       }}
       onEndReached={(stopEndReached) => {
@@ -48,7 +54,7 @@ function App() {
           } else {
             stopEndReached({ allLoad: false });
           }
-        }, 300);
+        }, 3000);
       }}
     />
   );

@@ -334,7 +334,20 @@ export default class ListView extends React.PureComponent {
     const { isEndReached } = this.state;
     const status =
       this._currentEndReachedStatus === EndReachedStatus.ALL_LOADED;
-    return <FooterLoding loading={isEndReached} allLoad={status} />;
+    return (
+      <FooterLoding
+        onLayout={(event) => {
+          console.log(event.nativeEvent);
+          if (Platform.OS === 'android' && isEndReached) {
+            setTimeout(() => {
+              this.scrollToEnd({ animated: false });
+            }, 0);
+          }
+        }}
+        loading={isEndReached}
+        allLoad={status}
+      />
+    );
   };
 
   renderEmptyView = () => {
@@ -370,7 +383,7 @@ export default class ListView extends React.PureComponent {
           onLayout={this._onLayout}
           onContentSizeChange={this._onContentSizeChange}
           onScroll={this._onScroll}
-          onEndReachedThreshold={0.1} // 必须在{...}后面，否则就会出问题。也不知道是为什么，
+          onEndReachedThreshold={0.2} // 必须在{...}后面，否则就会出问题。也不知道是为什么，
           onEndReached={this._onEndReached}
         />
       );
