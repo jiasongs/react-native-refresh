@@ -20,8 +20,7 @@ function RefreshAnimateHeader(props) {
   const onRefreshCallBack = useCallback(
     (state) => {
       setTimeout(() => {
-        lottieRef.current.play(0, AnimateTime);
-        progressRef.current.setValue(progressRef.current._value);
+        lottieRef.current.play();
       }, 0);
       onRefresh && onRefresh(state);
       currentState.current = state;
