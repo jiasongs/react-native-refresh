@@ -103,23 +103,26 @@ function RefreshHeader(props) {
   }, [children]);
 
   return (
-    <RCTRefreshLayout
-      {...panResponderRef.current.panHandlers}
-      ref={forwardedRef}
-      style={styles.positionStyle}
-      refreshing={refreshing}
-      onChangeOffset={offsetCallback}
-      onChangeState={onChangeState}
-      headerHeight={buildStyles.height}
-    >
-      {buildChildren}
-    </RCTRefreshLayout>
+    <View style={styles.positionStyle}>
+      <RCTRefreshLayout
+        {...panResponderRef.current.panHandlers}
+        ref={forwardedRef}
+        style={styles.positionStyle}
+        refreshing={refreshing}
+        onChangeOffset={offsetCallback}
+        onChangeState={onChangeState}
+        headerHeight={buildStyles.height}
+      >
+        {buildChildren}
+      </RCTRefreshLayout>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   positionStyle: {
     flex: 1,
+    overflow: 'hidden',
   },
 });
 

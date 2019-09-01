@@ -10,6 +10,11 @@
   "files": [
     "android",
     "!android/build",
+    "!android/bin",
+    "!android/react-native-refresh.iml",
+    "!android/.project",
+    "!android/.settings",
+    "!android/.gradle",
     "ios",
     "!ios/build",
     "src",
@@ -32,5 +37,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "src/index.d.ts",
-  "version": "1.0.6"
+  "version": "1.0.10"
 }

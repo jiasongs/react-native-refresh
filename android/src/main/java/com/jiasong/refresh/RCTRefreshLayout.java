@@ -1,6 +1,6 @@
 package com.jiasong.refresh;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 import android.view.View;
 
@@ -18,12 +18,10 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 
 public class RCTRefreshLayout extends SmartRefreshLayout {
 
-
     public static final String onChangeOffsetEvent = "onChangeOffset";
     public static final String onChangeStateEvent = "onChangeState";
     private ThemedReactContext mReactContext;
     private RCTEventEmitter eventEmitter;
-
 
     public RCTRefreshLayout(ThemedReactContext context) {
         super(context);
@@ -69,7 +67,6 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
         return this.getId();
     }
 
-
     private class RefreshListener implements OnRefreshListener {
         @Override
         public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -80,14 +77,16 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
     private class MultiPurposeListener extends SimpleMultiPurposeListener {
 
         @Override
-        public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
+        public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset,
+                int headerHeight, int maxDragHeight) {
             WritableMap map = new WritableNativeMap();
             map.putInt("offset", offset);
             eventEmitter.receiveEvent(getTargetId(), onChangeOffsetEvent, map);
         }
 
         @Override
-        public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
+        public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState,
+                @NonNull RefreshState newState) {
             WritableMap map = new WritableNativeMap();
             if (newState == RefreshState.None) {
                 map.putInt("state", 1);
@@ -111,7 +110,6 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
         public void onHeaderReleased(RefreshHeader header, int headerHeight, int extendHeight) {
 
         }
-
 
         @Override
         public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int extendHeight) {

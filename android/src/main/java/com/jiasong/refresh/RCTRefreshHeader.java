@@ -1,7 +1,7 @@
 package com.jiasong.refresh;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 
 import android.content.Context;
 import android.view.View;
@@ -13,14 +13,11 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 
-
 public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
-
 
     public RCTRefreshHeader(Context context) {
         super(context);
     }
-
 
     @Override
     public void onInitialized(@NonNull RefreshKernel kernel, int height, int extendHeight) {
@@ -29,12 +26,12 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
 
     @NonNull
     public View getView() {
-        return this;  //真实的视图就是自己，不能返回null
+        return this; // 真实的视图就是自己，不能返回null
     }
 
     @Override
     public SpinnerStyle getSpinnerStyle() {
-        return SpinnerStyle.Translate; //指定为平移，不能null
+        return SpinnerStyle.Translate; // 指定为平移，不能null
     }
 
     @Override
@@ -44,7 +41,7 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
 
     @Override
     public int onFinish(RefreshLayout layout, boolean success) {
-        return 500;//延迟500毫秒之后再弹回
+        return 500;// 延迟500毫秒之后再弹回
     }
 
     @Override
@@ -75,6 +72,5 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
     public void setPrimaryColors(@ColorInt int... colors) {
 
     }
-
 
 }

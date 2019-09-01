@@ -1,7 +1,7 @@
 package com.jiasong.refresh;
 
 import android.view.View;
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.common.MapBuilder;
@@ -16,7 +16,6 @@ import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import java.util.Map;
-
 
 public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> {
 
@@ -46,8 +45,7 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
         String onChangeOffsetEvent = RCTRefreshLayout.onChangeOffsetEvent;
         return MapBuilder.<String, Object>builder()
                 .put(onChangeStateEvent, MapBuilder.of("registrationName", onChangeStateEvent))
-                .put(onChangeOffsetEvent, MapBuilder.of("registrationName", onChangeOffsetEvent))
-                .build();
+                .put(onChangeOffsetEvent, MapBuilder.of("registrationName", onChangeOffsetEvent)).build();
     }
 
 }
