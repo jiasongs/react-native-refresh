@@ -41,7 +41,7 @@ public class RCTRefreshHeader extends ReactViewGroup implements RefreshHeader {
 
     @Override
     public int onFinish(RefreshLayout layout, boolean success) {
-        return 500;// 延迟500毫秒之后再弹回
+        return 0;
     }
 
     @Override

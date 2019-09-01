@@ -41,6 +41,7 @@ function RefreshHeader(props) {
     (event) => {
       const { state } = event.nativeEvent;
       if (currentState.current !== state) {
+        currentState.current = state;
         if (state === 1) {
           onIdleRefresh && onIdleRefresh(State.Idle);
         } else if (state === 2) {
@@ -50,7 +51,6 @@ function RefreshHeader(props) {
         } else if (state === 4) {
           onEndRefresh && onEndRefresh(State.End);
         }
-        currentState.current = state;
       }
     },
     [onEndRefresh, onPullingRefresh, onRefresh],
@@ -58,10 +58,8 @@ function RefreshHeader(props) {
 
   const offsetCallback = useCallback((event) => {
     const { offset } = event.nativeEvent;
-    if (offsetRef.current != offset) {
-      offsetRef.current = offset;
-      onChangeOffset && onChangeOffset(event);
-    }
+    offsetRef.current = offset;
+    onChangeOffset && onChangeOffset(event);
   }, []);
 
   const buildStyles = useMemo(() => {

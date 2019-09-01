@@ -3,7 +3,6 @@ package com.jiasong.refresh;
 import android.support.annotation.NonNull;
 
 import android.view.View;
-
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -15,6 +14,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
+import com.scwang.smartrefresh.layout.util.SmartUtil;
 
 public class RCTRefreshLayout extends SmartRefreshLayout {
 
@@ -80,7 +80,7 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
         public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset,
                 int headerHeight, int maxDragHeight) {
             WritableMap map = new WritableNativeMap();
-            map.putInt("offset", offset);
+            map.putDouble("offset", SmartUtil.px2dp(offset));
             eventEmitter.receiveEvent(getTargetId(), onChangeOffsetEvent, map);
         }
 
