@@ -11,7 +11,7 @@ function RefreshHeader(props) {
   const { children, style } = props;
 
   const buildStyles = useMemo(() => {
-    const flattenStyle = StyleSheet.flatten({ ...style });
+    const flattenStyle = StyleSheet.flatten(style ? style : {});
     if (!flattenStyle.height) {
       console.warn('style中必须设置固定高度');
     }
