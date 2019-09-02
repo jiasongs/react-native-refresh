@@ -115,7 +115,6 @@ RefreshLayout.propTypes = {
   onEndRefresh: PropTypes.func, // 刷新结束, 但是动画还未结束
   onIdleRefresh: PropTypes.func, // 闲置状态或者刷新完全结束
   onChangeOffset: PropTypes.func,
-  headerHeight: PropTypes.number,
 };
 
 RefreshLayout.defaultProps = {
