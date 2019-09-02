@@ -6,7 +6,7 @@
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 
-#import "MJRefreshHeader.h"
+#import <MJRefresh/MJRefresh.h>
 #import <React/RCTConvert.h>
 #import <React/RCTComponent.h>
 #import <React/RCTScrollableProtocol.h>

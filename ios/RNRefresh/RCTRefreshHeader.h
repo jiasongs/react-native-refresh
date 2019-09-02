@@ -5,7 +5,7 @@
 //  Created by RuanMei on 2019/9/2.
 //
 
-#import "RCTView.h"
+#import <React/RCTView.h>
 
 @interface RCTRefreshHeader : RCTView
 
