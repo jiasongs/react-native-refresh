@@ -1,20 +1,20 @@
 //
-//  RCTRefreshHeader.m
+//  RCTRefreshLayout
 //  RNTemplate
 //
 //  Created by RuanMei on 2019/8/29.
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 
-#import "RCTRefreshHeader.h"
+#import "RCTRefreshLayout.h"
 
-@interface RCTRefreshHeader ()
+@interface RCTRefreshLayout ()
 
 @property (nonatomic, assign) MJRefreshState preState;
 
 @end
 
-@implementation RCTRefreshHeader
+@implementation RCTRefreshLayout
 
 -(void)dealloc {
     NSLog(@"dealloc");

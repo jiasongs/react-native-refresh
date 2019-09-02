@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Dayjs from 'dayjs';
-import { RefreshHeader } from 'react-native-refresh';
+import { RefreshLayout, RefreshHeader } from 'react-native-refresh';
 
 function NormalRefreshHeader(props) {
   const { refreshing, onRefresh } = props;
@@ -50,7 +50,7 @@ function NormalRefreshHeader(props) {
 
   console.log('refreshing', refreshing);
   return (
-    <RefreshHeader
+    <RefreshLayout
       style={styles.container}
       refreshing={refreshing}
       onPullingRefresh={onPullingRefreshCallBack}
@@ -58,37 +58,39 @@ function NormalRefreshHeader(props) {
       onEndRefresh={onEndRefreshCallBack}
       onIdleRefresh={onIdleRefreshCallBack}
     >
-      <View style={styles.leftContainer}>
-        <Animated.Image
-          style={[
-            styles.image,
-            {
-              opacity: refreshing ? 0 : 1,
-              transform: [
-                {
-                  rotate: rotateZRef.current.interpolate({
-                    inputRange: [0, 180],
-                    outputRange: ['0deg', '180deg'],
-                  }),
-                },
-              ],
-            },
-          ]}
-          source={require('./assets/icon_down_arrow.png')}
-        />
-        <ActivityIndicator
-          style={{ opacity: refreshing ? 1 : 0 }}
-          animating={true}
-          size="small"
-          hidesWhenStopped={true}
-        />
-      </View>
-      <View style={styles.rightContainer}>
-        <Text style={styles.titleStyle}>{title}</Text>
-        <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
-      </View>
+      <RefreshHeader style={styles.container}>
+        <View style={styles.leftContainer}>
+          <Animated.Image
+            style={[
+              styles.image,
+              {
+                opacity: refreshing ? 0 : 1,
+                transform: [
+                  {
+                    rotate: rotateZRef.current.interpolate({
+                      inputRange: [0, 180],
+                      outputRange: ['0deg', '180deg'],
+                    }),
+                  },
+                ],
+              },
+            ]}
+            source={require('./assets/icon_down_arrow.png')}
+          />
+          <ActivityIndicator
+            style={{ opacity: refreshing ? 1 : 0 }}
+            animating={true}
+            size="small"
+            hidesWhenStopped={true}
+          />
+        </View>
+        <View style={styles.rightContainer}>
+          <Text style={styles.titleStyle}>{title}</Text>
+          <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
+        </View>
+      </RefreshHeader>
       {props.children}
-    </RefreshHeader>
+    </RefreshLayout>
   );
 }
 

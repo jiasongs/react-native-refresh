@@ -21,7 +21,9 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
 
     @ReactProp(name = "headerHeight")
     public void setHeaderHeight(RCTRefreshLayout view, float headerHeight) {
-        view.setHeaderHeight(headerHeight);
+        if (headerHeight != 0.0f) {
+            view.setHeaderHeight(headerHeight);
+        }
     }
 
     @ReactProp(name = "refreshing")

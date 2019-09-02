@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		596744EA2317B0BA00E3D225 /* RCTRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 596744E62317B0BA00E3D225 /* RCTRefreshHeader.m */; };
-		596744EB2317B0BA00E3D225 /* RCTRefreshHeaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 596744E92317B0BA00E3D225 /* RCTRefreshHeaderManager.m */; };
+		591CBE20231CA21000FBB197 /* RCTRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 591CBE19231CA20F00FBB197 /* RCTRefreshHeader.m */; };
+		591CBE21231CA21000FBB197 /* RCTRefreshHeaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591CBE1B231CA20F00FBB197 /* RCTRefreshHeaderManager.m */; };
+		591CBE22231CA21000FBB197 /* RCTRefreshLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 591CBE1C231CA20F00FBB197 /* RCTRefreshLayout.m */; };
+		591CBE23231CA21000FBB197 /* RCTRefreshLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591CBE1D231CA21000FBB197 /* RCTRefreshLayoutManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		596744D42317B05E00E3D225 /* CopyFiles */ = {
+		591CBE0A231CA1E000FBB197 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -24,15 +26,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		596744D62317B05E00E3D225 /* libRCTRefreshHeader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTRefreshHeader.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		596744E62317B0BA00E3D225 /* RCTRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshHeader.m; sourceTree = "<group>"; };
-		596744E72317B0BA00E3D225 /* RCTRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRefreshHeader.h; sourceTree = "<group>"; };
-		596744E82317B0BA00E3D225 /* RCTRefreshHeaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRefreshHeaderManager.h; sourceTree = "<group>"; };
-		596744E92317B0BA00E3D225 /* RCTRefreshHeaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshHeaderManager.m; sourceTree = "<group>"; };
+		591CBE0C231CA1E000FBB197 /* libRNRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		591CBE18231CA20F00FBB197 /* RCTRefreshLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRefreshLayout.h; sourceTree = "<group>"; };
+		591CBE19231CA20F00FBB197 /* RCTRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshHeader.m; sourceTree = "<group>"; };
+		591CBE1A231CA20F00FBB197 /* RCTRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRefreshHeader.h; sourceTree = "<group>"; };
+		591CBE1B231CA20F00FBB197 /* RCTRefreshHeaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshHeaderManager.m; sourceTree = "<group>"; };
+		591CBE1C231CA20F00FBB197 /* RCTRefreshLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshLayout.m; sourceTree = "<group>"; };
+		591CBE1D231CA21000FBB197 /* RCTRefreshLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshLayoutManager.m; sourceTree = "<group>"; };
+		591CBE1E231CA21000FBB197 /* RCTRefreshHeaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRefreshHeaderManager.h; sourceTree = "<group>"; };
+		591CBE1F231CA21000FBB197 /* RCTRefreshLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRefreshLayoutManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		596744D32317B05E00E3D225 /* Frameworks */ = {
+		591CBE09231CA1E000FBB197 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,98 +48,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		596744CD2317B05E00E3D225 = {
+		591CBE03231CA1E000FBB197 = {
 			isa = PBXGroup;
 			children = (
-				596744D82317B05E00E3D225 /* RCTRefreshHeader */,
-				596744D72317B05E00E3D225 /* Products */,
+				591CBE0E231CA1E000FBB197 /* RNRefresh */,
+				591CBE0D231CA1E000FBB197 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		596744D72317B05E00E3D225 /* Products */ = {
+		591CBE0D231CA1E000FBB197 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				596744D62317B05E00E3D225 /* libRCTRefreshHeader.a */,
+				591CBE0C231CA1E000FBB197 /* libRNRefresh.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		596744D82317B05E00E3D225 /* RCTRefreshHeader */ = {
+		591CBE0E231CA1E000FBB197 /* RNRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				596744E72317B0BA00E3D225 /* RCTRefreshHeader.h */,
-				596744E62317B0BA00E3D225 /* RCTRefreshHeader.m */,
-				596744E82317B0BA00E3D225 /* RCTRefreshHeaderManager.h */,
-				596744E92317B0BA00E3D225 /* RCTRefreshHeaderManager.m */,
+				591CBE1A231CA20F00FBB197 /* RCTRefreshHeader.h */,
+				591CBE19231CA20F00FBB197 /* RCTRefreshHeader.m */,
+				591CBE1E231CA21000FBB197 /* RCTRefreshHeaderManager.h */,
+				591CBE1B231CA20F00FBB197 /* RCTRefreshHeaderManager.m */,
+				591CBE18231CA20F00FBB197 /* RCTRefreshLayout.h */,
+				591CBE1C231CA20F00FBB197 /* RCTRefreshLayout.m */,
+				591CBE1F231CA21000FBB197 /* RCTRefreshLayoutManager.h */,
+				591CBE1D231CA21000FBB197 /* RCTRefreshLayoutManager.m */,
 			);
-			path = RCTRefreshHeader;
+			path = RNRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		596744D52317B05E00E3D225 /* RCTRefreshHeader */ = {
+		591CBE0B231CA1E000FBB197 /* RNRefresh */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 596744DF2317B05E00E3D225 /* Build configuration list for PBXNativeTarget "RCTRefreshHeader" */;
+			buildConfigurationList = 591CBE15231CA1E000FBB197 /* Build configuration list for PBXNativeTarget "RNRefresh" */;
 			buildPhases = (
-				596744D22317B05E00E3D225 /* Sources */,
-				596744D32317B05E00E3D225 /* Frameworks */,
-				596744D42317B05E00E3D225 /* CopyFiles */,
+				591CBE08231CA1E000FBB197 /* Sources */,
+				591CBE09231CA1E000FBB197 /* Frameworks */,
+				591CBE0A231CA1E000FBB197 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = RCTRefreshHeader;
-			productName = RCTRefreshHeader;
-			productReference = 596744D62317B05E00E3D225 /* libRCTRefreshHeader.a */;
+			name = RNRefresh;
+			productName = RNRefresh;
+			productReference = 591CBE0C231CA1E000FBB197 /* libRNRefresh.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		596744CE2317B05E00E3D225 /* Project object */ = {
+		591CBE04231CA1E000FBB197 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = jiasong;
 				TargetAttributes = {
-					596744D52317B05E00E3D225 = {
+					591CBE0B231CA1E000FBB197 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 596744D12317B05E00E3D225 /* Build configuration list for PBXProject "RCTRefreshHeader" */;
+			buildConfigurationList = 591CBE07231CA1E000FBB197 /* Build configuration list for PBXProject "RNRefresh" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 596744CD2317B05E00E3D225;
-			productRefGroup = 596744D72317B05E00E3D225 /* Products */;
+			mainGroup = 591CBE03231CA1E000FBB197;
+			productRefGroup = 591CBE0D231CA1E000FBB197 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				596744D52317B05E00E3D225 /* RCTRefreshHeader */,
+				591CBE0B231CA1E000FBB197 /* RNRefresh */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		596744D22317B05E00E3D225 /* Sources */ = {
+		591CBE08231CA1E000FBB197 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				596744EB2317B0BA00E3D225 /* RCTRefreshHeaderManager.m in Sources */,
-				596744EA2317B0BA00E3D225 /* RCTRefreshHeader.m in Sources */,
+				591CBE23231CA21000FBB197 /* RCTRefreshLayoutManager.m in Sources */,
+				591CBE20231CA21000FBB197 /* RCTRefreshHeader.m in Sources */,
+				591CBE21231CA21000FBB197 /* RCTRefreshHeaderManager.m in Sources */,
+				591CBE22231CA21000FBB197 /* RCTRefreshLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		596744DD2317B05E00E3D225 /* Debug */ = {
+		591CBE13231CA1E000FBB197 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -192,7 +204,7 @@
 			};
 			name = Debug;
 		};
-		596744DE2317B05E00E3D225 /* Release */ = {
+		591CBE14231CA1E000FBB197 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -245,7 +257,7 @@
 			};
 			name = Release;
 		};
-		596744E02317B05E00E3D225 /* Debug */ = {
+		591CBE16231CA1E000FBB197 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -256,7 +268,7 @@
 			};
 			name = Debug;
 		};
-		596744E12317B05E00E3D225 /* Release */ = {
+		591CBE17231CA1E000FBB197 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -270,25 +282,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		596744D12317B05E00E3D225 /* Build configuration list for PBXProject "RCTRefreshHeader" */ = {
+		591CBE07231CA1E000FBB197 /* Build configuration list for PBXProject "RNRefresh" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				596744DD2317B05E00E3D225 /* Debug */,
-				596744DE2317B05E00E3D225 /* Release */,
+				591CBE13231CA1E000FBB197 /* Debug */,
+				591CBE14231CA1E000FBB197 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		596744DF2317B05E00E3D225 /* Build configuration list for PBXNativeTarget "RCTRefreshHeader" */ = {
+		591CBE15231CA1E000FBB197 /* Build configuration list for PBXNativeTarget "RNRefresh" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				596744E02317B05E00E3D225 /* Debug */,
-				596744E12317B05E00E3D225 /* Release */,
+				591CBE16231CA1E000FBB197 /* Debug */,
+				591CBE17231CA1E000FBB197 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 596744CE2317B05E00E3D225 /* Project object */;
+	rootObject = 591CBE04231CA1E000FBB197 /* Project object */;
 }

@@ -18,7 +18,9 @@ export interface RefreshState {
 
 export interface RefreshHeaderProps {
   style?: StyleProp;
+}
 
+export interface RefreshLayoutProps {
   refreshing?: boolean;
 
   enableRefresh?: boolean;
@@ -35,5 +37,7 @@ export interface RefreshHeaderProps {
 }
 
 export const RefreshHeader: React.ComponentClass<RefreshHeaderProps>;
+
+export const RefreshLayout: React.ComponentClass<RefreshLayoutProps>;
 
 export const RefreshState: RefreshState;

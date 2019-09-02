@@ -2,7 +2,11 @@
 import React, { useRef, useCallback, useMemo } from 'react';
 import { StyleSheet, Animated, Platform, RefreshControl } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { RefreshHeader, RefreshState } from 'react-native-refresh';
+import {
+  RefreshLayout,
+  RefreshHeader,
+  RefreshState,
+} from 'react-native-refresh';
 
 const AnimateTime = 286;
 
@@ -52,8 +56,7 @@ function RefreshAnimateHeader(props) {
   }, []);
 
   return (
-    <RefreshHeader
-      style={styles.container}
+    <RefreshLayout
       refreshing={refreshing}
       onChangeOffset={onChangeOffsetCallBack}
       onPullingRefresh={onPullingRefreshCallBack}
@@ -61,25 +64,27 @@ function RefreshAnimateHeader(props) {
       onEndRefresh={onEndRefreshCallBack}
       onIdleRefresh={onIdleRefreshCallBack}
     >
-      <LottieView
-        ref={lottieRef}
-        style={styles.lottery}
-        resizeMode={'cover'}
-        loop={true}
-        autoSize={false}
-        autoPlay={false}
-        speed={2}
-        source={source}
-        hardwareAccelerationAndroid={true}
-        cacheStrategy={'strong'}
-        progress={progressRef.current.interpolate({
-          inputRange: [0, 200],
-          outputRange: [0, 1],
-          extrapolate: 'clamp',
-        })}
-      />
+      <RefreshHeader style={styles.container}>
+        <LottieView
+          ref={lottieRef}
+          style={styles.lottery}
+          resizeMode={'cover'}
+          loop={true}
+          autoSize={false}
+          autoPlay={false}
+          speed={2}
+          source={source}
+          hardwareAccelerationAndroid={true}
+          cacheStrategy={'strong'}
+          progress={progressRef.current.interpolate({
+            inputRange: [0, 200],
+            outputRange: [0, 1],
+            extrapolate: 'clamp',
+          })}
+        />
+      </RefreshHeader>
       {props.children}
-    </RefreshHeader>
+    </RefreshLayout>
   );
 }
 

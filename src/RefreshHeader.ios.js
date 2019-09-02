@@ -1,51 +1,17 @@
 'use strict';
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   StyleSheet,
   ViewPropTypes,
   requireNativeComponent,
 } from 'react-native';
-import PropTypes from 'prop-types';
-import State from './RefreshState';
 
 function RefreshHeader(props) {
-  const {
-    children,
-    style,
-    refreshing,
-    enableRefresh,
-    onPullingRefresh,
-    onRefresh,
-    onEndRefresh,
-    onIdleRefresh,
-    onChangeOffset,
-    forwardedRef,
-  } = props;
-
-  const currentState = useRef(1);
-
-  const onChangeState = useCallback(
-    (event) => {
-      const { state } = event.nativeEvent;
-      if (currentState.current !== state) {
-        currentState.current = state;
-        if (state === 1) {
-          onIdleRefresh && onIdleRefresh(State.Idle);
-        } else if (state === 2) {
-          onPullingRefresh && onPullingRefresh(State.Pulling);
-        } else if (state === 3) {
-          onRefresh && onRefresh(State.Refreshing);
-        } else if (state === 4) {
-          onEndRefresh && onEndRefresh(State.End);
-        }
-      }
-    },
-    [onEndRefresh, onPullingRefresh, onRefresh],
-  );
+  const { children, style } = props;
 
   const buildStyles = useMemo(() => {
-    const flattenStyle = StyleSheet.flatten([style, styles.positionStyle]);
-    if (!flattenStyle.height && enableRefresh) {
+    const flattenStyle = StyleSheet.flatten({ ...style });
+    if (!flattenStyle.height) {
       console.warn('style中必须设置固定高度');
     }
     return {
@@ -53,55 +19,21 @@ function RefreshHeader(props) {
     };
   }, [style]);
 
-  if (!enableRefresh) {
-    return null;
-  }
-
   return (
-    <RCTRefreshHeader
-      ref={forwardedRef}
-      style={buildStyles.style}
-      refreshing={refreshing}
-      onChangeOffset={onChangeOffset}
-      onChangeState={onChangeState}
-    >
-      {children}
-    </RCTRefreshHeader>
+    <RCTRefreshHeader style={buildStyles.style}>{children}</RCTRefreshHeader>
   );
 }
 
-const styles = StyleSheet.create({
-  positionStyle: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-  },
-});
-
 RefreshHeader.propTypes = {
   style: ViewPropTypes.style,
-  refreshing: PropTypes.bool,
-  enableRefresh: PropTypes.bool,
-  onRefresh: PropTypes.func, // 刷新中
-  onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
-  onEndRefresh: PropTypes.func, // 刷新结束, 但是动画还未结束
-  onIdleRefresh: PropTypes.func, // 闲置状态或者刷新完全结束
-  onChangeOffset: PropTypes.func,
 };
 
-RefreshHeader.defaultProps = {
-  refreshing: false,
-  enableRefresh: true,
-};
+RefreshHeader.defaultProps = {};
 
 const RCTRefreshHeader = requireNativeComponent('RCTRefreshHeader');
 
 const MemoRefreshHeader = React.memo(RefreshHeader);
 
-const ForwardRefreshHeader = React.forwardRef((props, ref) => (
-  <MemoRefreshHeader forwardedRef={ref} {...props} />
-));
+MemoRefreshHeader.displayName = 'RCTRefreshHeader';
 
-ForwardRefreshHeader.displayName = 'RefreshHeader';
-
-export default ForwardRefreshHeader;
+export default MemoRefreshHeader;

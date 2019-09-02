@@ -5,16 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RCTRefreshHeaderManager.h"
-#import "RCTRefreshHeader.h"
+#import "RCTRefreshLayoutManager.h"
+#import "RCTRefreshLayout.h"
 
-@implementation RCTRefreshHeaderManager
+@implementation RCTRefreshLayoutManager
 
 RCT_EXPORT_MODULE()
 
 - (UIView *)view
 {
-  return [[RCTRefreshHeader alloc] init];
+  return [[RCTRefreshLayout alloc] init];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(refreshing, BOOL)

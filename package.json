@@ -10,15 +10,10 @@
   "files": [
     "android",
     "!android/build",
-    "!android/bin",
-    "!android/react-native-refresh.iml",
-    "!android/.project",
-    "!android/.settings",
-    "!android/.gradle",
     "ios",
     "!ios/build",
     "src",
-    "RCTRefreshHeader.podspec"
+    "RNRefresh.podspec"
   ],
   "homepage": "https://github.com/jiasongs/react-native-refresh#readme",
   "license": "MIT",
@@ -37,5 +32,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "src/index.d.ts",
-  "version": "1.0.12"
+  "version": "2.0.0"
 }

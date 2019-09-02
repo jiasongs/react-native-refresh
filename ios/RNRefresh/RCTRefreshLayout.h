@@ -11,7 +11,7 @@
 #import <React/RCTComponent.h>
 #import <React/RCTScrollableProtocol.h>
 
-@interface RCTRefreshHeader : MJRefreshHeader<RCTCustomRefreshContolProtocol>
+@interface RCTRefreshLayout : MJRefreshHeader<RCTCustomRefreshContolProtocol>
 
 @property (nonatomic, copy) RCTDirectEventBlock onRefresh;
 @property (nonatomic, copy) RCTDirectEventBlock onChangeState;
