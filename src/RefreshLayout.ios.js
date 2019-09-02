@@ -1,5 +1,5 @@
 'use strict';
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { StyleSheet, requireNativeComponent } from 'react-native';
 import PropTypes from 'prop-types';
 import State from './RefreshState';

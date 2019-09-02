@@ -9,7 +9,7 @@ function ListHeaderLoading(props) {
   const { isRefreshing, onRefresh, ...others } = props;
 
   return (
-    <RefreshNormalHeader
+    <RefreshAnimateHeader
       refreshing={isRefreshing}
       source={require('../assets/8572-liquid-blobby-loader.json')}
       onRefresh={onRefresh}

@@ -2,7 +2,6 @@
 import React, { useRef, useCallback, useMemo } from 'react';
 import {
   StyleSheet,
-  ViewPropTypes,
   requireNativeComponent,
   View,
   PanResponder,
