@@ -47,5 +47,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "src/index.d.ts",
-  "version": "2.0.4"
+  "version": "2.0.5"
 }
