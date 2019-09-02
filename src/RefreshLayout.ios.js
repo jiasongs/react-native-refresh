@@ -35,7 +35,7 @@ function RefreshLayout(props) {
         }
       }
     },
-    [onEndRefresh, onPullingRefresh, onRefresh],
+    [onEndRefresh, onIdleRefresh, onPullingRefresh, onRefresh],
   );
 
   if (!enableRefresh) {

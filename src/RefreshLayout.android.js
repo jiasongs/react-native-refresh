@@ -52,14 +52,17 @@ function RefreshLayout(props) {
         }
       }
     },
-    [onEndRefresh, onPullingRefresh, onRefresh],
+    [onEndRefresh, onIdleRefresh, onPullingRefresh, onRefresh],
   );
 
-  const offsetCallback = useCallback((event) => {
-    const { offset } = event.nativeEvent;
-    offsetRef.current = offset;
-    onChangeOffset && onChangeOffset(event);
-  }, []);
+  const offsetCallback = useCallback(
+    (event) => {
+      const { offset } = event.nativeEvent;
+      offsetRef.current = offset;
+      onChangeOffset && onChangeOffset(event);
+    },
+    [onChangeOffset],
+  );
 
   const headerHeight = useMemo(() => {
     if (!enableRefresh) {
