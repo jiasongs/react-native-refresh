@@ -51,7 +51,6 @@ function NormalRefreshHeader(props) {
   console.log('refreshing', refreshing);
   return (
     <RefreshLayout
-      style={styles.container}
       refreshing={refreshing}
       onPullingRefresh={onPullingRefreshCallBack}
       onRefresh={onRefreshCallBack}
