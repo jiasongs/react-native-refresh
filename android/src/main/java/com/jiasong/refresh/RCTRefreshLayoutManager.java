@@ -31,9 +31,9 @@ public class RCTRefreshLayoutManager extends ViewGroupManager<RCTRefreshLayout> 
         view.setRefreshing(refreshing);
     }
 
-    @ReactProp(name = "enableRefresh")
-    public void setEnableRefresh(RCTRefreshLayout view, Boolean enableRefresh) {
-        view.setEnableRefresh(enableRefresh);
+    @ReactProp(name = "enable")
+    public void setEnable(RCTRefreshLayout view, Boolean enable) {
+        view.setEnableRefresh(enable);
 
     }
 

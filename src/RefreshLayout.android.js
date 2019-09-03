@@ -13,7 +13,7 @@ function RefreshLayout(props) {
   const {
     children,
     refreshing,
-    enableRefresh,
+    enable,
     onPullingRefresh,
     onRefresh,
     onEndRefresh,
@@ -65,7 +65,7 @@ function RefreshLayout(props) {
   );
 
   const headerHeight = useMemo(() => {
-    if (!enableRefresh) {
+    if (!enable) {
       return 0;
     }
     let height = 0;
@@ -80,7 +80,7 @@ function RefreshLayout(props) {
       }
     });
     return height;
-  }, [children, enableRefresh]);
+  }, [children, enable]);
 
   return (
     <View style={styles.layoutStyle}>
@@ -88,7 +88,7 @@ function RefreshLayout(props) {
         {...panResponderRef.current.panHandlers}
         ref={forwardedRef}
         style={styles.layoutStyle}
-        enableRefresh={enableRefresh}
+        enable={enable}
         refreshing={refreshing}
         onChangeOffset={offsetCallback}
         onChangeState={onChangeState}
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 
 RefreshLayout.propTypes = {
   refreshing: PropTypes.bool,
-  enableRefresh: PropTypes.bool,
+  enable: PropTypes.bool,
   onRefresh: PropTypes.func, // 刷新中
   onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
   onEndRefresh: PropTypes.func, // 刷新结束, 但是动画还未结束
@@ -119,7 +119,7 @@ RefreshLayout.propTypes = {
 
 RefreshLayout.defaultProps = {
   refreshing: false,
-  enableRefresh: true,
+  enable: true,
 };
 
 const RCTRefreshLayout = requireNativeComponent('RCTRefreshLayout');

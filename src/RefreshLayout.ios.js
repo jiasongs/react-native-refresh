@@ -8,7 +8,7 @@ function RefreshLayout(props) {
   const {
     children,
     refreshing,
-    enableRefresh,
+    enable,
     onPullingRefresh,
     onRefresh,
     onEndRefresh,
@@ -38,7 +38,7 @@ function RefreshLayout(props) {
     [onEndRefresh, onIdleRefresh, onPullingRefresh, onRefresh],
   );
 
-  if (!enableRefresh) {
+  if (!enable) {
     return null;
   }
 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 
 RefreshLayout.propTypes = {
   refreshing: PropTypes.bool,
-  enableRefresh: PropTypes.bool,
+  enable: PropTypes.bool,
   onRefresh: PropTypes.func, // 刷新中
   onPullingRefresh: PropTypes.func, // 松开就可以进行刷新
   onEndRefresh: PropTypes.func, // 刷新结束, 但是动画还未结束
@@ -75,7 +75,7 @@ RefreshLayout.propTypes = {
 
 RefreshLayout.defaultProps = {
   refreshing: false,
-  enableRefresh: true,
+  enable: true,
 };
 
 const RCTRefreshLayout = requireNativeComponent('RCTRefreshLayout');

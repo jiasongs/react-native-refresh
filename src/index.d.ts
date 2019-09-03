@@ -21,9 +21,9 @@ export interface RefreshHeaderProps {
 }
 
 export interface RefreshLayoutProps {
-  refreshing?: boolean;
+  enable?: boolean;
 
-  enableRefresh?: boolean;
+  refreshing?: boolean;
 
   onIdleRefresh?(state: State): void;
 

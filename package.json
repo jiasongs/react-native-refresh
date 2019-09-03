@@ -23,6 +23,7 @@
   "homepage": "https://github.com/jiasongs/react-native-refresh#readme",
   "license": "MIT",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "name": "react-native-refresh",
   "peerDependencies": {
     "react": "^16.8.6",
@@ -46,6 +47,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "types": "src/index.d.ts",
-  "version": "2.0.6"
+  "version": "2.0.7"
 }
