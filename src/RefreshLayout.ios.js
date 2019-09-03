@@ -39,7 +39,7 @@ function RefreshLayout(props) {
   );
 
   if (!enable) {
-    return null;
+    return children ? children : null;
   }
 
   return (
