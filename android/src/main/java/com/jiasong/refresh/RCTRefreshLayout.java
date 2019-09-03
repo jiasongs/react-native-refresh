@@ -51,9 +51,9 @@ public class RCTRefreshLayout extends SmartRefreshLayout {
 
     public void setRefreshing(Boolean refreshing) {
         RefreshState newState = this.getState();
-        if (refreshing && newState != RefreshState.Refreshing) {
+        if (refreshing && newState == RefreshState.None) {
             this.autoRefresh();
-        } else if (!refreshing && newState == RefreshState.Refreshing) {
+        } else if (!refreshing && (newState == RefreshState.Refreshing || newState == RefreshState.RefreshReleased)) {
             this.finishRefresh();
         }
     }

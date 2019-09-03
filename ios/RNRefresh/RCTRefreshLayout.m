@@ -31,8 +31,10 @@
 - (void)setState:(MJRefreshState)state {
     [super setState:state];
     if (self.onChangeState) {
-        if (state == MJRefreshStateIdle && _preState == MJRefreshStateRefreshing) {
-            self.onChangeState(@{@"state":@(4)});
+        if (state == MJRefreshStateIdle && (_preState == MJRefreshStateRefreshing || _preState == MJRefreshStateWillRefresh)) {
+            self.onChangeState(@{@"state":@(4)}); // 结束刷新
+        } else if (state == MJRefreshStateWillRefresh){
+            self.onChangeState(@{@"state":@(3)}); // 正在刷新
         } else {
             self.onChangeState(@{@"state":@(state)});
         }
@@ -57,15 +59,13 @@
             [self beginRefreshing];
         })
     } else if (!refreshing && (self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh)) {
-        MJRefreshDispatchAsyncOnMainQueue({
-             __weak typeof(self) weakSelf = self;
-            [self endRefreshingWithCompletionBlock:^{
-                typeof(weakSelf) self = weakSelf;
-                if (self.onChangeState) {
-                    self.onChangeState(@{@"state":@(MJRefreshStateIdle)});
-                }
-            }];
-        })
+        __weak typeof(self) weakSelf = self;
+        [self endRefreshingWithCompletionBlock:^{
+            typeof(weakSelf) self = weakSelf;
+            if (self.onChangeState) {
+                self.onChangeState(@{@"state":@(MJRefreshStateIdle)});
+            }
+        }];
     }
 }
 
