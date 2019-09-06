@@ -1,5 +1,5 @@
 'use strict';
-import React, { useRef, useCallback } from 'react';
+import React, { useMemo, useRef, useCallback } from 'react';
 import { StyleSheet, requireNativeComponent } from 'react-native';
 import PropTypes from 'prop-types';
 import State from './RefreshState';
@@ -38,8 +38,27 @@ function RefreshLayout(props) {
     [onEndRefresh, onIdleRefresh, onPullingRefresh, onRefresh],
   );
 
+  const build = useMemo(() => {
+    const newChildren = React.Children.map(children, (element) => {
+      const type =
+        element && typeof element.type === 'object' ? element.type : {};
+      if (type.displayName === 'RCTRefreshHeader') {
+        if (enable) {
+          return element;
+        } else {
+          return null;
+        }
+      } else {
+        return element;
+      }
+    });
+    return {
+      children: newChildren,
+    };
+  }, [children, enable]);
+
   if (!enable) {
-    return children ? children : null;
+    return build.children;
   }
 
   return (
@@ -50,7 +69,7 @@ function RefreshLayout(props) {
       onChangeOffset={onChangeOffset}
       onChangeState={onChangeState}
     >
-      {children}
+      {build.children}
     </RCTRefreshLayout>
   );
 }

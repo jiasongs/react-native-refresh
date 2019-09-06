@@ -67,7 +67,8 @@ function RefreshLayout(props) {
   const build = useMemo(() => {
     let height = 0;
     const newChildren = React.Children.map(children, (element) => {
-      const type = typeof element.type === 'object' ? element.type : {};
+      const type =
+        element && typeof element.type === 'object' ? element.type : {};
       if (type.displayName === 'RCTRefreshHeader') {
         if (enable) {
           const elementProps = element.props;
