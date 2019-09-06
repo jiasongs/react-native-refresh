@@ -13,7 +13,7 @@
     "lottie-react-native": "^3.1.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-refresh": "^2.0.9"
+    "react-native-refresh": "^2.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
