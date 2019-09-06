@@ -73,7 +73,7 @@ function RefreshAnimateHeader(props) {
           autoSize={false}
           autoPlay={false}
           speed={2}
-          source={source}
+          source={require('./assets/8209-blue-dots-throbber.json')}
           hardwareAccelerationAndroid={true}
           cacheStrategy={'strong'}
           progress={progressRef.current.interpolate({
