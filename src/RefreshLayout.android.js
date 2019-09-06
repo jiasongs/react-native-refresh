@@ -64,22 +64,29 @@ function RefreshLayout(props) {
     [onChangeOffset],
   );
 
-  const headerHeight = useMemo(() => {
-    if (!enable) {
-      return 0;
-    }
+  const build = useMemo(() => {
     let height = 0;
-    React.Children.map(children, (element) => {
+    const newChildren = React.Children.map(children, (element) => {
       const type = typeof element.type === 'object' ? element.type : {};
       if (type.displayName === 'RCTRefreshHeader') {
-        const elementProps = element.props;
-        const flattenStyle = StyleSheet.flatten(
-          elementProps && elementProps.style ? elementProps.style : {},
-        );
-        height = flattenStyle.height;
+        if (enable) {
+          const elementProps = element.props;
+          const flattenStyle = StyleSheet.flatten(
+            elementProps && elementProps.style ? elementProps.style : {},
+          );
+          height = flattenStyle.height;
+          return element;
+        } else {
+          return null;
+        }
+      } else {
+        return element;
       }
     });
-    return height;
+    return {
+      children: newChildren,
+      headerHeight: height,
+    };
   }, [children, enable]);
 
   return (
@@ -92,9 +99,9 @@ function RefreshLayout(props) {
         refreshing={refreshing}
         onChangeOffset={offsetCallback}
         onChangeState={onChangeState}
-        headerHeight={headerHeight}
+        headerHeight={build.headerHeight}
       >
-        {children}
+        {build.children}
       </RCTRefreshLayout>
     </View>
   );
