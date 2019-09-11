@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleProp } from 'react-native';
 
-type State = 'Idle' | 'Pulling' | 'Refreshing';
+type State = 'Idle' | 'Pulling' | 'Refreshing' | 'End';
 
 interface Event {
   nativeEvent: {
