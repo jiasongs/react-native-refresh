@@ -25,11 +25,6 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "name": "react-native-refresh",
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-native": "^0.57.0",
-    "dayjs": "^1.8.16"
-  },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.3.0",
@@ -47,5 +42,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "2.0.12"
+  "version": "2.0.14"
 }
