@@ -20,6 +20,14 @@
     "src",
     "RNRefresh.podspec"
   ],
+  "keywords": [
+    "refresh",
+    "refreshControl",
+    "react-native",
+    "react",
+    "MJRefresh",
+    "SmartRefreshLayout"
+  ],
   "homepage": "https://github.com/jiasongs/react-native-refresh#readme",
   "license": "MIT",
   "main": "src/index.js",
