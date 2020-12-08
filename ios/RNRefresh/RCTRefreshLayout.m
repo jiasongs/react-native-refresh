@@ -1,9 +1,9 @@
 //
 //  RCTRefreshLayout
-//  RNTemplate
+//  RNRefresh
 //
-//  Created by RuanMei on 2019/8/29.
-//  Copyright © 2019 Facebook. All rights reserved.
+//  Created by jiasong on 2019/9/2.
+//  Copyright © 2020 jiasong. All rights reserved.
 //
 
 #import "RCTRefreshLayout.h"
@@ -16,13 +16,8 @@
 
 @implementation RCTRefreshLayout
 
--(void)dealloc {
-    NSLog(@"dealloc");
-}
-
--(instancetype)init {
-    self = [super init];
-    if (self) {
+- (instancetype)init {
+    if (self = [super init]) {
         _preState = MJRefreshStateIdle;
     }
     return self;
@@ -42,7 +37,7 @@
     _preState = state;
 }
 
--(void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
+- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
     [super scrollViewContentOffsetDidChange:change];
     if (self.onChangeOffset) {
         CGPoint newPoint = [change[@"new"] CGPointValue];

@@ -34,14 +34,14 @@
   "types": "src/index.d.ts",
   "name": "react-native-refresh",
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.3.0",
-    "eslint-plugin-eslint-comments": "^3.1.2",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "eslint-plugin-react-native": "^3.7.0",
-    "prettier": "^1.18.2"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.15.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-native": "^3.10.0",
+    "prettier": "^2.2.1"
   },
   "repository": {
     "type": "git",
@@ -50,5 +50,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "2.0.15"
+  "version": "2.0.17"
 }

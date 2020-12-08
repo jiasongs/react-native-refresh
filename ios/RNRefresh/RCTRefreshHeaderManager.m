@@ -1,9 +1,10 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+//
+//  RCTRefreshHeaderManager.m
+//  RNRefresh
+//
+//  Created by jiasong on 2019/9/2.
+//  Copyright © 2020 jiasong. All rights reserved.
+//
 
 #import "RCTRefreshHeaderManager.h"
 #import "RCTRefreshHeader.h"
@@ -12,10 +13,8 @@
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
-{
-  return [[RCTRefreshHeader alloc] init];
+- (UIView *)view {
+    return [[RCTRefreshHeader alloc] init];
 }
-
 
 @end

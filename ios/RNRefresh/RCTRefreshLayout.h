@@ -1,9 +1,9 @@
 //
-//  RCTRefreshHeader.h
-//  RNTemplate
+//  RCTRefreshLayout.h
+//  RNRefresh
 //
-//  Created by RuanMei on 2019/8/29.
-//  Copyright © 2019 Facebook. All rights reserved.
+//  Created by jiasong on 2019/9/2.
+//  Copyright © 2020 jiasong. All rights reserved.
 //
 
 #import <MJRefresh/MJRefresh.h>
@@ -11,12 +11,14 @@
 #import <React/RCTComponent.h>
 #import <React/RCTScrollableProtocol.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface RCTRefreshLayout : MJRefreshHeader<RCTCustomRefreshContolProtocol>
 
-@property (nonatomic, copy) RCTDirectEventBlock onRefresh;
-@property (nonatomic, copy) RCTDirectEventBlock onChangeState;
-@property (nonatomic, copy) RCTDirectEventBlock onChangeOffset;
+@property (nullable, nonatomic, copy) RCTDirectEventBlock onRefresh;
+@property (nullable, nonatomic, copy) RCTDirectEventBlock onChangeState;
+@property (nullable, nonatomic, copy) RCTDirectEventBlock onChangeOffset;
 
 @end
 
-
+NS_ASSUME_NONNULL_END
