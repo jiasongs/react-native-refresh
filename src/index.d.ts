@@ -22,18 +22,12 @@ export interface RefreshHeaderProps {
 
 export interface RefreshLayoutProps {
   enable?: boolean;
-
   refreshing?: boolean;
-
-  onIdleRefresh?(state: State): void;
-
-  onRefresh?(state: State): void;
-
-  onPullingRefresh?(state: State): void;
-
-  onEndRefresh?(state: State): void;
-
-  onChangeOffset?(event: Event): void;
+  onIdleRefresh?: (state: State) => void;
+  onRefresh?: (state: State) => void;
+  onPullingRefresh?: (state: State) => void;
+  onEndRefresh?: (state: State) => void;
+  onChangeOffset?: (event: Event) => void;
 }
 
 export const RefreshHeader: React.ComponentClass<RefreshHeaderProps>;
